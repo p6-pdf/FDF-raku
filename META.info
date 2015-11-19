@@ -1,0 +1,14 @@
+{
+    "name"        : "PDF::FDF",
+    "version"     : "0.0.1",
+    "description" : "Classes for FDF (PDF Forms Data Definition)",
+    "depends"     : [ "PDF", "PDF::Grammar" ],
+    "source-url"  : "git://github.com/p6-pdf/p6-PDF-FDF.git",
+    "provides"    : {
+
+        "PDF::FDF" : "lib/PDF/FDF.pm",
+
+        "PDF::DOM::Catalog" : "lib/PDF/DOM/Catalog.pm",
+        "PDF::DOM::Dict" : "lib/PDF/DOM/Dict.pm"
+    }
+}
