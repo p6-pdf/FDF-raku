@@ -1,0 +1,18 @@
+%FDF-1.3
+%¥±ë
+1 0 obj <<
+  /FDF <<
+    /F (create-simple.fdf)
+    /Fields [ <<
+        /T /Hello
+        /V (World)
+      >> ]
+    /ID [ <07C7C24CA8A73E762B7C37E931DD5E84> <07C7C24CA8A73E762B7C37E931DD5E84> ]
+  >>
+>>
+endobj
+trailer
+<<
+  /Root 1 0 R
+>>
+%%EOF

@@ -15,6 +15,6 @@ isa-ok $fdf.Root.FDF, Hash, '$fdf.Root.FDF';
 is $fdf.Root.FDF.F, 'simple.pdf', '$fdfFDF.F';
 
 isa-ok $fdf<Root><FDF><Fields>, Array, '$fdf<Root><FDF><Fields>';
-is $fdf.Root.FDF.Fields[0]<T>, 'status', '$fdf.Root.FDF.Fields[0]<T>';
+is $fdf.Root.FDF.Fields[0].T, 'status', '$fdf.Root.FDF.Fields[0].T';
 
 done-testing;

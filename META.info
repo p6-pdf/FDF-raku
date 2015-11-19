@@ -8,7 +8,9 @@
 
         "PDF::FDF" : "lib/PDF/FDF.pm",
 
-        "PDF::DOM::Catalog" : "lib/PDF/DOM/Catalog.pm",
-        "PDF::DOM::Dict" : "lib/PDF/DOM/Dict.pm"
+        "PDF::FDF::Catalog" : "lib/PDF/FDF/Catalog.pm",
+        "PDF::FDF::Dict" : "lib/PDF/FDF/Dict.pm",
+
+        "PDF::FDF::Type::Field" : "lib/PDF/FDF/Type/Field.pm",
     }
 }

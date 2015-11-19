@@ -39,13 +39,13 @@ my class FDF
     method save-as($spec, Bool :$force, |c) {
 	self.cb-init
 	    unless self<Root>:exists;
-	self<Root>.cb-finish;
 
 	nextwith( $spec, |c);
     }
 
     method cb-init {
-	self<Root> //= PDF::FDF::Catalog.new;
+	self<Root> //= { :FDF{} };
+	self.delegator.coerce(self<Root>, PDF::FDF::Catalog);
     }
 
 }
