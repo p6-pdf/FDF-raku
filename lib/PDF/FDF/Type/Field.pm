@@ -8,6 +8,8 @@ use PDF::DAO::Tie::Hash;
 role PDF::FDF::Type::Field
     does PDF::DAO::Tie::Hash {
 
+   # See [PDF 1.7 TABLE 8.96 Entries in an FDF field dictionary]
+
     use PDF::DAO::Tie;
 
     has Str $.T is entry(:required);   #| (Required) The partial field name

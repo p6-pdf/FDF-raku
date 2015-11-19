@@ -6,7 +6,7 @@ use PDF::DAO::Doc;
 my class FDF
     is PDF::DAO::Doc {
 
-    # base class declares: $.Size, $.Encrypt, $.Info, $.ID
+    # See [PDF 1.7 TABLE 8.91 Entry in the FDF trailer dictionary]
     use PDF::DAO::Tie;
     use PDF::DAO::Delegator;
     use PDF::FDF::Catalog;

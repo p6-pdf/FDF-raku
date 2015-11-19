@@ -3,8 +3,8 @@ use v6;
 use PDF::DAO::Tie::Hash;
 use PDF::FDF::Dict;
 
-# /Type /Catalog - usually the document root in a PDF
-# See [PDF 1.7 Section 3.6.1 Document Catalog]
+# See [PDF 1.7 TABLE 8.92 Entries in the FDF catalog dictionary]
+
 role PDF::FDF::Catalog
     does PDF::DAO::Tie::Hash {
 

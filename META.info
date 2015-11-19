@@ -12,5 +12,8 @@
         "PDF::FDF::Dict" : "lib/PDF/FDF/Dict.pm",
 
         "PDF::FDF::Type::Field" : "lib/PDF/FDF/Type/Field.pm",
+        "PDF::FDF::Type::Page" : "lib/PDF/FDF/Type/Page.pm",
+        "PDF::FDF::Type::Template" : "lib/PDF/FDF/Type/Template.pm",
+        "PDF::FDF::Type::TRef" : "lib/PDF/FDF/Type/TRef.pm"
     }
 }
