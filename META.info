@@ -2,7 +2,7 @@
     "name"        : "PDF::FDF",
     "version"     : "0.0.1",
     "description" : "Classes for FDF (PDF Forms Data Definition)",
-    "depends"     : [ "PDF", "PDF::Grammar" ],
+    "depends"     : [ "PDF", "PDF::DOM" ],
     "source-url"  : "git://github.com/p6-pdf/p6-PDF-FDF.git",
     "provides"    : {
 
@@ -11,8 +11,11 @@
         "PDF::FDF::Catalog" : "lib/PDF/FDF/Catalog.pm",
         "PDF::FDF::Dict" : "lib/PDF/FDF/Dict.pm",
 
+        "PDF::FDF::Type::Actions" : "lib/PDF/FDF/Type/Actions.pm",
+        "PDF::FDF::Type::Annot" : "lib/PDF/FDF/Type/Annot.pm",
         "PDF::FDF::Type::Field" : "lib/PDF/FDF/Type/Field.pm",
         "PDF::FDF::Type::IconFit" : "lib/PDF/FDF/Type/IconFit.pm",
+        "PDF::FDF::Type::JavaScript" : "lib/PDF/FDF/Type/JavaScript.pm",
         "PDF::FDF::Type::Page" : "lib/PDF/FDF/Type/Page.pm",
         "PDF::FDF::Type::Template" : "lib/PDF/FDF/Type/Template.pm",
         "PDF::FDF::Type::TRef" : "lib/PDF/FDF/Type/TRef.pm"

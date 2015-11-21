@@ -1,6 +1,7 @@
 use v6;
 
 use PDF::DAO::Doc;
+use PDF::DOM::Delegator;
 
 #| DOM entry-point. either a trailer dict or an XRef stream
 my class FDF
