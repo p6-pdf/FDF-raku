@@ -26,18 +26,20 @@ my class FDF
 	    !! Nil
     }
 
+    method fields { self.Root.FDF.fields }
+
     method open(|c) {
 	my $obj = callsame;
 	$obj.delegator.coerce($obj<Root>, PDF::FDF::Catalog);
 	$obj;
     }
 
-    #| Save back to the original PDF. Note that incremental update is not support for FDF
+    #| Save back to the original file. Note that incremental update is not applicable FDF
     method update(|c) {
 	$.save-as($.reader.file-name, |c);
     }
 
-    method save-as($spec, Bool :$force, |c) {
+    method save-as($spec, |c) {
 	self.cb-init
 	    unless self<Root>:exists;
 

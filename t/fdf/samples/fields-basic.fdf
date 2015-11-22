@@ -1,0 +1,21 @@
+%FDF-1.2
+1 0 obj
+<<
+/FDF <<
+  /Fields [
+    << /T (CheckBox) /V /Off >>
+    << /T (CheckBox2) /V /On >>
+    << /T (ComboBox1) /V (Option 1) >>
+    << /T (ListBox) /V (Item2) >>
+    << /T (MultiLineText) /V (This is a Multi-line text box. Note that the text wraps around to the next line!)>>
+    << /T (RadioGroup) /V /Yes >>
+    << /T (TextBox) /V (Sample Text )>>
+  ]
+  /F (fields-basic.pdf)>>
+>>
+endobj
+trailer
+<<
+  /Root 1 0 R
+>>
+%%EOF
