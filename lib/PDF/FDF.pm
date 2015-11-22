@@ -29,9 +29,13 @@ my class FDF
     method fields { self.Root.FDF.fields }
 
     method open(|c) {
-	my $obj = callsame;
-	$obj.delegator.coerce($obj<Root>, PDF::FDF::Catalog);
-	$obj;
+	my $doc = callsame;
+
+	die "FDF file has wrong type: " ~ $doc.reader.type
+	    unless $doc.reader.type eq 'FDF';
+
+	$doc.delegator.coerce($doc<Root>, PDF::FDF::Catalog);
+	$doc;
     }
 
     #| Save back to the original file. Note that incremental update is not applicable FDF
