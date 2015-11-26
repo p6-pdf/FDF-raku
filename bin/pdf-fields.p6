@@ -8,8 +8,8 @@ use PDF::DAO::Type::Encrypt :PermissionsFlag;
 #| list all fields and current values
 multi sub MAIN(
     Str $infile,            #| input PDF or FDF
-    Str  :$password = '',   #| password for the PDF/FDF, if encrypted
     Bool :$list!,
+    Str  :$password = '',   #| password for the PDF/FDF, if encrypted
     ) {
     my $doc;
     my @fields;
@@ -28,6 +28,7 @@ multi sub MAIN(
 	my %fields-hash;
 
 	for @fields -> $field {
+	    next unless $field.can('V');
 	    my $key = '???';
 	    if $field.T && !(%fields-hash{ $field.T }:exists) {
 		$key = $field.T
@@ -39,7 +40,7 @@ multi sub MAIN(
 	    %fields-hash{$key} = $field.V;
 	}
 
-	say "{.key}: {.value}"
+	say "{.key}: {.value // ''}"
 	    for %fields-hash.pairs.sort;
     }
     else {
@@ -50,6 +51,7 @@ multi sub MAIN(
 #| update PDF, setting specified fields from imported FDF or name-value pairs
 multi sub MAIN(
     Str $infile,
+    Bool :$fill!,
     Str  :$import,
     Str  :$save-as,
     Bool :$update,
@@ -127,43 +129,73 @@ multi sub MAIN(
     }
 }
 
+#| export acroform fields from a PDF to an FDF file
+multi sub MAIN(
+    Str $infile,            #| input PDF
+    Str $outfile = $infile.subst(/:i ['.' \w+]? $/, '.fdf'),           #| output FDF
+    Bool :$export!,
+    Str  :$password = '',   #| password for the PDF, if encrypted
+    ) {
+    my $doc;
+    my @fields;
+
+    $doc = PDF::DOM.open($infile, :$password);
+    my @pdf-fields = $doc.Root.AcroForm.fields
+	    if $doc.Root.?AcroForm;
+ 
+    die "PDF has no AcroForm fields: $infile"
+	unless @pdf-fields;
+
+    die "Output file does not have an .fdf or .json extension: $outfile"
+	unless $outfile.IO.extension ~~ /:i [fdf|json] $/;
+
+    my $fdf = PDF::FDF.new;
+    my $fdf-dict = $fdf.Root.FDF;
+    $fdf-dict.F = $infile.IO.basename;
+    my $fdf-fields = $fdf-dict.Fields //= [];
+
+    for 0..2 {
+        my $pdf-field = @pdf-fields[$_];
+	my $fdf-field = $fdf-fields.push: {};
+	# pretty simple ATM, just copy common fields
+	for $pdf-field.keys {
+	    next if $_ ~~ 'Kids' | 'Type' | 'Subtype' || ! $fdf-field.can($_);
+	    $fdf-field."$_"() = $pdf-field{$_};
+	}
+    }
+
+    warn "saving...";
+    $fdf.save-as: $outfile;
+}
+
 =begin pod
 
 =head1 NAME
 
-pdf-fill-fields.p6 - Replace PDF form fields with specified values
+pdf-fields.p6 - Manipulate PDF/FDF fields
 
 =head1 SYNOPSIS
 
- pdf-fill-fields.p6 --list --password=text infile.pdf
- pdf-fill-fields.p6 [--save-as outfile.pdf] [options] infile.pdf --import values.fdf [field value ...]
+ pdf-fields.p6 --list infile.[pdf|fdf]
+ pdf-fields.p6 --fill [--save-as outfile.pdf] [options] infile.pdf --import=values.fdf [field value ...]
+ pdf-fields.p6 --export infile.pdf [outfile.fdf]
 
- Options:
+ Options
    --list               list fields and current values
-   --import=values.fdf  import FDF field data
-   --save-as=file.pdf   save to a new file
-   --force              force save-as when digital signatures may be invalidated
-   --trigger-clear      remove all of the form triggers after replacing values
+   --fill               fill fields from an fdf, or command-line values
+       --import=values.fdf  import FDF field data
+       --save-as=file.pdf   save to a new file
+       --trigger-clear      remove all of the form triggers after replacing values
+       --force              continuing saving. Override 'digital signatures may be invalidated' error
+   --export             export PDF fields to an FDF
+
+ General Options:
    --password           provide user/owner password for an encrypted PDF
 
 =head1 DESCRIPTION
 
-Fill in the forms in the PDF with the specified values, identified by
-their field names.  See C<pdf-fill-fields.pl --list> lists form fields.
-
 In some cases digital signatures may be invalidated when the document is saved
 in full with the --save-as option. The --force option can be used to proceed,
 in such circumstances.
-
-=head1 SEE ALSO
-
-CAM::PDF (Perl 5)
-PDF::DOM (Perl 6)
-
-=head1 AUTHOR
-
-See L<CAM::PDF>
-
-=cut
 
 =end pod
