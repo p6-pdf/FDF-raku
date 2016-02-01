@@ -1,4 +1,4 @@
-{
+{   "perl"        : "6",
     "name"        : "PDF::FDF",
     "version"     : "0.0.1",
     "description" : "Classes for FDF (PDF Forms Data Definition)",
