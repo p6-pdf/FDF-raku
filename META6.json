@@ -2,7 +2,7 @@
     "name"        : "PDF::FDF",
     "version"     : "0.0.1",
     "description" : "Classes for FDF (PDF Forms Data Definition)",
-    "depends"     : [ "PDF", "PDF::DOM" ],
+    "depends"     : [ "PDF", "PDF::Struct" ],
     "source-url"  : "git://github.com/p6-pdf/p6-PDF-FDF.git",
     "provides"    : {
 

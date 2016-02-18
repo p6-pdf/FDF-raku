@@ -10,8 +10,7 @@ my $fields = $fdf.fields;
 
 is +$fields, 7, 'number of fields';
 
-skip "rakudo is losing role definition";
-#does-ok $fields[0], PDF::FDF::Type::Field, 'field role';
+does-ok $fields[0], PDF::FDF::Type::Field, 'field role';
 is $fields[0].T, 'CheckBox', '$fields.T';
 is $fields[0].V, 'Off', '$fields.V';
 

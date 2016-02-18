@@ -1,7 +1,6 @@
 use v6;
 
 use PDF::DAO::Doc;
-use PDF::DOM::Delegator;
 
 #| DOM entry-point. either a trailer dict or an XRef stream
 my class FDF
@@ -9,8 +8,8 @@ my class FDF
 
     # See [PDF 1.7 TABLE 8.91 Entry in the FDF trailer dictionary]
     use PDF::DAO::Tie;
-    use PDF::DAO::Delegator;
     use PDF::FDF::Catalog;
+    use PDF::Struct::Doc::Delegator;
 
     has PDF::FDF::Catalog $.Root is entry(:required,:indirect);
 
@@ -26,7 +25,9 @@ my class FDF
 	    !! Nil
     }
 
-    method fields { self.Root.FDF.fields }
+    method fields {
+	self.Root.FDF.fields
+    }
 
     method open(|c) {
 	my $doc = callsame;

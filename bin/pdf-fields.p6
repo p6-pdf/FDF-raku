@@ -1,7 +1,7 @@
 #!/usr/bin/env perl6
 use v6;
 
-use PDF::DOM;
+use PDF::Struct::Doc;
 use PDF::FDF;
 use PDF::DAO::Type::Encrypt :PermissionsFlag;
 
@@ -19,7 +19,7 @@ multi sub MAIN(
         @fields = $doc.fields;
     }
     else {
-        $doc = PDF::DOM.open($infile, :$password);
+        $doc = PDF::Struct::Doc.open($infile, :$password);
         @fields = $doc.Root.AcroForm.fields
 	    if $doc.Root.?AcroForm;
     }
@@ -61,7 +61,7 @@ multi sub MAIN(
     Bool :$force = False,
     *@field-list) {
 
-    my $doc = PDF::DOM.open($infile, :$password);
+    my $doc = PDF::Struct::Doc.open($infile, :$password);
     die "$infile has no fields defined"
 	unless $doc.Root.AcroForm;
 
@@ -108,7 +108,7 @@ multi sub MAIN(
     for @field-list -> $key, $val {
 	if %fields{$key}:exists {
 	    # CAM::PDF is working harder here and resizing/styling the field to accomodate the field value
-	    # todo: port CAM::PDF::fillFormFields sub. fill-form method in PDF::DOM::Type::Field?
+	    # todo: port CAM::PDF::fillFormFields sub. fill-form method in PDF::Struct::Field?
 	    %fields{$key}.V = $val;
 	    %fields{$key}<AA>:delete
 		if $trigger-clear;
@@ -139,7 +139,7 @@ multi sub MAIN(
     my $doc;
     my @fields;
 
-    $doc = PDF::DOM.open($infile, :$password);
+    $doc = PDF::Struct::Doc.open($infile, :$password);
     my @pdf-fields = $doc.Root.AcroForm.fields
 	    if $doc.Root.?AcroForm;
  
