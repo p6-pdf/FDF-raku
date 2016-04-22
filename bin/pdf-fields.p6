@@ -54,11 +54,9 @@ multi sub MAIN(
     Bool :$fill!,
     Str  :$import,
     Str  :$save-as,
-    Bool :$update,
     Bool :$trigger-clear,
     Str  :$background,
     Str  :$password = '',
-    Bool :$force = False,
     *@field-list) {
 
     my $doc = PDF::Struct::Doc.open($infile, :$password);
@@ -121,8 +119,8 @@ multi sub MAIN(
     die "This PDF forbids modification\n"
 	unless $doc.permitted( PermissionsFlag::Modify );
 
-    if $save-as.defined {
-        $doc.save-as( $save-as, :$force );
+    with $save-as {
+        $doc.save-as( $_ );
     }
     else {
         $doc.update;
@@ -186,7 +184,6 @@ pdf-fields.p6 - Manipulate PDF/FDF fields
        --import=values.fdf  import FDF field data
        --save-as=file.pdf   save to a new file
        --trigger-clear      remove all of the form triggers after replacing values
-       --force              continuing saving. Override 'digital signatures may be invalidated' error
    --export             export PDF fields to an FDF
 
  General Options:
@@ -194,8 +191,6 @@ pdf-fields.p6 - Manipulate PDF/FDF fields
 
 =head1 DESCRIPTION
 
-In some cases digital signatures may be invalidated when the document is saved
-in full with the --save-as option. The --force option can be used to proceed,
-in such circumstances.
+List, fill or export PDF form fields.
 
 =end pod
