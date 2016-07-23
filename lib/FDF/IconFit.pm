@@ -5,7 +5,7 @@ use PDF::DAO::Tie::Hash;
 
 # FDF Appearance Dictionary definition
 
-my role IconFit
+role FDF::IconFit
     does PDF::DAO::Tie::Hash {
 
     # See [PDF 1.7 TABLE 8.100 Entries in an FDF named page reference dictionary]
@@ -45,5 +45,3 @@ my role IconFit
     has Bool $.FB;                               #| (Optional; PDF 1.5) If true, indicates that the button appearance should be scaled to fit fully within the bounds of the annotation without taking into consideration the line width of the border. Default value: false.
 
 }
-
-role PDF::FDF::Type::IconFit does IconFit {}

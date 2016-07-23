@@ -3,22 +3,21 @@ use v6;
 use PDF::DAO::Doc;
 
 #| DOM entry-point. either a trailer dict or an XRef stream
-my class FDF
+class FDF
     is PDF::DAO::Doc {
 
     # See [PDF 1.7 TABLE 8.91 Entry in the FDF trailer dictionary]
     use PDF::DAO::Tie;
-    use PDF::FDF::Catalog;
-    use PDF::Struct::Doc::Delegator;
+    use FDF::Catalog;
 
-    has PDF::FDF::Catalog $.Root is entry(:required,:indirect);
+    has FDF::Catalog $.Root is entry(:required,:indirect);
 
     method type { 'FDF' }
     method version returns Version:_ {
 	my $version = self.Root.Version;
 	# reader extracts version from the PDF Header, e.g.: '%PDF-1.4'
-	$version //= self.reader.version
-	    if self.reader;
+	$version //= .reader.version
+	    with self.reader;
 
 	$version
 	    ?? Version.new( $version )
@@ -35,7 +34,7 @@ my class FDF
 	die "FDF file has wrong type: " ~ $doc.reader.type
 	    unless $doc.reader.type eq 'FDF';
 
-	$doc.delegator.coerce($doc<Root>, PDF::FDF::Catalog);
+	$doc.delegator.coerce($doc<Root>, FDF::Catalog);
 	$doc;
     }
 
@@ -53,9 +52,7 @@ my class FDF
 
     method cb-init {
 	self<Root> //= { :FDF{} };
-	self.delegator.coerce(self<Root>, PDF::FDF::Catalog);
+	self.delegator.coerce(self<Root>, FDF::Catalog);
     }
 
 }
-
-class PDF::FDF is FDF {};

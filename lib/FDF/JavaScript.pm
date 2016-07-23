@@ -5,7 +5,7 @@ use PDF::DAO::Tie::Hash;
 
 # FDF Annot Dictionary definition
 
-my role JavaScript
+role FDF::JavaScript
     does PDF::DAO::Tie::Hash {
 
     # See [PDF 1.7 TABLE TABLE 8.95 Entries in the JavaScript dictionary]
@@ -24,6 +24,3 @@ my role JavaScript
     # to be completed
 
 }
-
-role PDF::FDF::Type::JavaScript does JavaScript {}
-

@@ -1,13 +1,13 @@
 use v6;
 use Test;
-use PDF::FDF;
+use FDF;
 
 # ensure consistant document ID generation
 srand(123456);
 
-lives-ok { PDF::FDF.new.save-as: "t/fdf/create-minimal.fdf" }, "create minimal";
+lives-ok { FDF.new.save-as: "t/fdf/create-minimal.fdf" }, "create minimal";
 
-my $fdf-doc = PDF::FDF.new;
+my $fdf-doc = FDF.new;
 my $fdf = $fdf-doc.Root.FDF;
 
 $fdf.F = 'create-simple.fdf';

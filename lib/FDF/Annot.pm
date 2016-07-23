@@ -5,7 +5,7 @@ use PDF::DAO::Tie::Hash;
 
 # FDF Annot Dictionary definition
 
-my role Annot
+role FDF::Annot
     does PDF::DAO::Tie::Hash {
 
     # See [PDF 1.7 TABLE (Required for annotations in FDF files) The ordinal page number on which this annotation should appear, where page 0 is the first page.]
@@ -16,6 +16,4 @@ my role Annot
     has UInt $.Page is entry;  #| (Required for annotations in FDF files) The ordinal page number on which this annotation should appear, where page 0 is the first page.
 
 }
-
-role PDF::FDF::Type::Annot does Annot {}
 

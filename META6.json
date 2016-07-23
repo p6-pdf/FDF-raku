@@ -1,23 +1,23 @@
 {   "perl"        : "6",
-    "name"        : "PDF::FDF",
+    "name"        : "FDF",
     "version"     : "0.0.1",
     "description" : "Classes for FDF (PDF Forms Data Definition)",
-    "depends"     : [ "PDF", "PDF::Struct" ],
+    "depends"     : [ "PDF::DAO", "PDF" ],
     "source-url"  : "git://github.com/p6-pdf/p6-PDF-FDF.git",
     "provides"    : {
 
-        "PDF::FDF" : "lib/PDF/FDF.pm",
+        "FDF" : "lib/FDF.pm",
 
-        "PDF::FDF::Catalog" : "lib/PDF/FDF/Catalog.pm",
-        "PDF::FDF::Dict" : "lib/PDF/FDF/Dict.pm",
+        "FDF::Catalog"    : "lib/FDF/Catalog.pm",
+        "FDF::Dict"       : "lib/FDF/Dict.pm",
 
-        "PDF::FDF::Type::Actions" : "lib/PDF/FDF/Type/Actions.pm",
-        "PDF::FDF::Type::Annot" : "lib/PDF/FDF/Type/Annot.pm",
-        "PDF::FDF::Type::Field" : "lib/PDF/FDF/Type/Field.pm",
-        "PDF::FDF::Type::IconFit" : "lib/PDF/FDF/Type/IconFit.pm",
-        "PDF::FDF::Type::JavaScript" : "lib/PDF/FDF/Type/JavaScript.pm",
-        "PDF::FDF::Type::Page" : "lib/PDF/FDF/Type/Page.pm",
-        "PDF::FDF::Type::Template" : "lib/PDF/FDF/Type/Template.pm",
-        "PDF::FDF::Type::TRef" : "lib/PDF/FDF/Type/TRef.pm"
+        "FDF::Actions"    : "lib/FDF/Actions.pm",
+        "FDF::Annot"      : "lib/FDF/Annot.pm",
+        "FDF::Field"      : "lib/FDF/Field.pm",
+        "FDF::IconFit"    : "lib/FDF/IconFit.pm",
+        "FDF::JavaScript" : "lib/FDF/JavaScript.pm",
+        "FDF::Page"       : "lib/FDF/Page.pm",
+        "FDF::Template"   : "lib/FDF/Template.pm",
+        "FDF::TRef"       : "lib/FDF/TRef.pm"
     }
 }

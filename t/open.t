@@ -1,14 +1,14 @@
 use v6;
 use Test;
 
-use PDF::FDF;
+use FDF;
 
-my $fdf = PDF::FDF.open( 't/fdf/samples/simple.fdf' );
+my $fdf = FDF.open( 't/fdf/samples/simple.fdf' );
 
 is $fdf.version, 1.2, 'loaded version';
 is $fdf.type, 'FDF', 'loaded type';
 
-isa-ok $fdf, PDF::FDF , 'root FDF object';
+isa-ok $fdf, FDF , 'root FDF object';
 isa-ok $fdf<Root><FDF>, Hash, '$fdf<Root><FDF>';
 isa-ok $fdf.Root.FDF, Hash, '$fdf.Root.FDF';
 
