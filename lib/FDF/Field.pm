@@ -1,32 +1,32 @@
 use v6;
 
 use PDF::DAO::Tie::Hash;
+use PDF::DAO::Tie;
+use PDF::DAO::Name;
+use PDF::DAO::Stream;
+
+my role APDict
+    does PDF::DAO::Tie::Hash {
+
+    has PDF::DAO::Stream $.N is entry(:required);   #| The annotation’s normal appearance.
+    has PDF::DAO::Stream $.R is entry;              #| (Optional) The annotation’s rollover appearance. Default value: the value of the N entry. 
+    has PDF::DAO::Stream $.D is entry;              #| (Optional) The annotation’s down appearance. Default value: the value of the entry. 
+}
+
+my role APRefDict
+    does PDF::DAO::Tie::Hash {
+
+    has PDF::DAO::Name $.N is entry(:required);     #| The annotation’s normal appearance.
+    has PDF::DAO::Name $.R is entry;                #| (Optional) The annotation’s rollover appearance. Default value: the value of the N entry. 
+    has PDF::DAO::Name $.D is entry;                #| (Optional) The annotation’s down appearance. Default value: the value of the entry. 
+}
 
 role FDF::Field
     does PDF::DAO::Tie::Hash {
 
     # See [PDF 1.7 TABLE 8.96 Entries in an FDF field dictionary]
-    use PDF::DAO::Tie;
-    use PDF::DAO::Name;
-    use PDF::DAO::Stream;
 
     # FDF Field definition
-
-    my role APDict
-        does PDF::DAO::Tie::Hash {
-
-        has PDF::DAO::Stream $.N is entry(:required);   #| The annotation’s normal appearance.
-        has PDF::DAO::Stream $.R is entry;              #| (Optional) The annotation’s rollover appearance. Default value: the value of the N entry. 
-        has PDF::DAO::Stream $.D is entry;              #| (Optional) The annotation’s down appearance. Default value: the value of the entry. 
-    }
-
-    my role APRefDict
-        does PDF::DAO::Tie::Hash {
-
-        has PDF::DAO::Name $.N is entry(:required);   #| The annotation’s normal appearance.
-        has PDF::DAO::Name $.R is entry;              #| (Optional) The annotation’s rollover appearance. Default value: the value of the N entry. 
-        has PDF::DAO::Name $.D is entry;              #| (Optional) The annotation’s down appearance. Default value: the value of the entry. 
-    }
 
     has FDF::Field @.Kids is entry; #| (Optional) An array containing the immediate children of this field.
                                                #| Note: Unlike the children of fields in a PDF file, which must be specified as indirect object references, those of an FDF field may be either direct or indirect objects. 

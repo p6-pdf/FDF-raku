@@ -1,6 +1,5 @@
 use v6;
 
-use PDF::DAO::Tie;
 use PDF::DAO::Tie::Hash;
 
 # FDF Actions Dictionary definition
