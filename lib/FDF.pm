@@ -1,10 +1,11 @@
 use v6;
 
-use PDF::DAO::Doc;
+use PDF;
+use PDF::Doc::Delegator;
 
 #| DOM entry-point. either a trailer dict or an XRef stream
 class FDF
-    is PDF::DAO::Doc {
+    is PDF {
 
     # See [PDF 1.7 TABLE 8.91 Entry in the FDF trailer dictionary]
     use PDF::DAO::Tie;
@@ -16,7 +17,7 @@ class FDF
     method version returns Version:_ {
 	my $version = self.Root.Version;
 	# reader extracts version from the PDF Header, e.g.: '%PDF-1.4'
-	$version //= .reader.version
+	$version //= .version
 	    with self.reader;
 
 	$version
