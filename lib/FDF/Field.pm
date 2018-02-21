@@ -62,16 +62,13 @@ role FDF::Field
 
     has APDict $.AP is entry;          #| (Optional) An appearance dictionary specifying the appearance of a pushbutton field. The appearance dictionary’s contents are as shown in Table 8.19 on page 614, except that the values of the N, R, and D entries must all be streams.
 
-    has APRefDict $.ApRef is entry;    #| (Optional; PDF 1.3) A dictionary holding references to external PDF files containing the pages to use for the appearances of a pushbutton field. This dictionary is similar to an appearance dictionary, except that the values of the N,R and D entries must all be named page reference dictionaries. This entry is ignored if an AP entry is present. 
+    has APRefDict $.ApRef is entry;    #| (Optional; PDF 1.3) A dictionary holding references to external PDF files containing the pages to use for the appearances of a pushbutton field. This dictionary is similar to an appearance dictionary, except that the values of the N,R and D entries must all be named page reference dictionaries. This entry is ignored if an AP entry is present.
 
     use FDF::IconFit;
     has FDF::IconFit $.IF is entry;  #| (Optional; PDF 1.3; button fields only) An icon fit dictionary (see Table 8.97) specifying how to display a button field’s icon within the annotation rectangle of its widget annotation. 
 
-## causing Rakudo to lose symbols
     use FDF::Actions;
     has FDF::Actions $.A is entry;   #| (Optional) An action to be performed when this field’s widget annotation is activated 
     has FDF::Actions $.AA is entry;  #| (Optional) An additional-actions dictionary defining the field’s behavior in response to various trigger events
-##    has Hash $.A is entry;
-##    has Hash $.AA is entry;
     has $.RV is entry;                  #| (Optional; PDF 1.5) A rich text string
 }

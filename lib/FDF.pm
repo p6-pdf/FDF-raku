@@ -1,7 +1,7 @@
 use v6;
 
 use PDF;
-use PDF::Doc::Delegator;
+use PDF::Class::Loader;
 
 #| DOM entry-point. either a trailer dict or an XRef stream
 class FDF
@@ -10,6 +10,7 @@ class FDF
     # See [PDF 1.7 TABLE 8.91 Entry in the FDF trailer dictionary]
     use PDF::DAO::Tie;
     use FDF::Catalog;
+    use PDF::DAO;
 
     has FDF::Catalog $.Root is entry(:required,:indirect);
 
@@ -35,7 +36,7 @@ class FDF
 	die "FDF file has wrong type: " ~ $doc.reader.type
 	    unless $doc.reader.type eq 'FDF';
 
-	$doc.delegator.coerce($doc<Root>, FDF::Catalog);
+	PDF::DAO.coerce($doc<Root>, FDF::Catalog);
 	$doc;
     }
 
@@ -44,16 +45,9 @@ class FDF
 	$.save-as($.reader.file-name, |c);
     }
 
-    method save-as($spec, |c) {
-	self.cb-init
-	    unless self<Root>:exists;
-
-	nextwith( $spec, |c);
-    }
-
     method cb-init {
 	self<Root> //= { :FDF{} };
-	self.delegator.coerce(self<Root>, FDF::Catalog);
+	PDF::DAO.coerce(self<Root>, FDF::Catalog);
     }
 
 }

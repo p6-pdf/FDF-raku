@@ -16,13 +16,19 @@ role FDF::Dict
 
     use FDF::Field;
     has FDF::Field @.Fields is entry;  #| (Optional) An array of FDF field dictionaries describing the root fields (those with no ancestors in the field hierarchy) to be exported or imported. This entry and the Pages entry may not both be present.
-    method fields { flat @.Fields.grep(*.defined).map: *.fields }
+    method fields {
+	my @fields;
+        my $flds = self.Fields;
+	for $flds.keys {
+	    @fields.append( $flds[$_].fields )
+	}
+	@fields;
+    }
 
-    # To be completed
     has Str $.Status is entry;                    #| (Optional) A status string to be displayed indicating the result of an action, typically a submit-form action on page 703). The string is encoded with PDFDocEncoding. 
 
     use FDF::Page;
-    has FDF::Page @.Pages is entry;    #| (Optional; PDF 1.3) An array of FDF page dictionaries  describing new pages to be added to a PDF target document. The Fields and Status entries may not be present together with this entry. 
+    has FDF::Page @.Pages is entry;    #| (Optional; PDF 1.3) An array of FDF page dictionaries  describing new pages to be added to a PDF target document. The Fields and Status entries may not be present together with this entry.
 
     has PDF::DAO::Name $.Encoding is entry;      #| (Optional; PDF 1.3) The encoding to be used for any FDF field value or option (V or Opt in the field dictionary; see Table 8.96 on page 717) or field name that is a string and does not begin with the Unicode prefix U+FEFF. Default value: PDFDocEncoding.
 
