@@ -12,7 +12,7 @@ role FDF::Dict
     use PDF::COS::Tie;
     use PDF::Filespec :File, :&to-file;
 
-    has File $.F is entry(:alias<file>, :required, :coerce(&to-file));                         # Optional) The source file or target file: the PDF document file that this FDF file was exported from or is intended to be imported into.
+    has File $.F is entry(:alias<file>, :coerce(&to-file));                         # Optional) The source file or target file: the PDF document file that this FDF file was exported from or is intended to be imported into.
 
     has Str @.ID is entry(:len(2));               # (Optional) An array of two byte strings constituting a file identifier (see Section 10.3, “File Identifiers”) for the source or target file designated by F, taken from the ID entry in the file’s trailer dictionary
 

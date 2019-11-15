@@ -8,12 +8,12 @@ use PDF::COS::Tie::Hash;
 role FDF::Annot
     does PDF::COS::Tie::Hash {
 
-    # See [PDF 1.7 TABLE (Required for annotations in FDF files) The ordinal page number on which this annotation should appear, where page 0 is the first page.]
+    # See [PDF Table 251 – Additional entry for annotation dictionaries in an FDF file]
 
     # Note PDF::Class::Loader will subclass this as type PDF::Annot
 
     use PDF::COS::Tie;
-    has UInt $.Page is entry;  #| (Required for annotations in FDF files) The ordinal page number on which this annotation should appear, where page 0 is the first page.
+    has UInt $.Page is entry;  # (Required for annotations in FDF files) The ordinal page number on which this annotation should appear, where page 0 is the first page.
 
 }
 

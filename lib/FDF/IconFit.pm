@@ -8,40 +8,31 @@ use PDF::COS::Tie::Hash;
 role FDF::IconFit
     does PDF::COS::Tie::Hash {
 
-    # See [PDF 1.7 TABLE 8.100 Entries in an FDF named page reference dictionary]
+    # See [PDF 32000 - Table 247 – Entries in an icon fit dictionary]
 
     use PDF::COS::Tie;
     use PDF::COS::Name;
     use PDF::COS::TextString;
 
     my subset SWVal of PDF::COS::Name where 'A' | 'B' | 'S' | 'N';
-    has SWVal $.SW is entry;     #| (Optional) The circumstances under which the icon should be scaled inside the annotation rectangle:
-    #| A: Always scale.
-    #| B: Scale only when the icon is bigger than the annotation rectangle.
-    #| S: Scale only when the icon is smaller than the annotation rectangle.
-    #| N: Never scale.
-    #| Default value: A. 
+    has SWVal $.SW is entry( :default<A>);     # (Optional) The circumstances under which the icon should be scaled inside the annotation rectangle:
+    # A: Always scale.
+    # B: Scale only when the icon is bigger than the annotation rectangle.
+    # S: Scale only when the icon is smaller than the annotation rectangle.
+    # N: Never scale.
+    # Default value: A.
+    my subset SVal of PDF::COS::Name where 'A' | 'P';
+    # A: Anamorphic scaling: Scale the icon to fill the annotation rectangle exactly,
+    #    without regard to its original aspect ratio (ratio of width to height).
+    # P: Proportional scaling: Scale the icon to fit the width or height of the annotation
+    #    rectangle while maintaining the icon’s original aspect ratio. If the required
+    #    horizontal and vertical scaling factors are different, use the smaller of the two,
+    #    centering the icon within the annotation rectangle in the other dimension.
+    # Default value: P.
+    has SVal $.S is entry( :default<P>);  # (Optional) The type of scaling that shall be used:
 
-    my subset ArrayOfTextStrings of Array where { !.first( !*.isa(PDF::COS::TextString) ) }
-    my subset IconFitOption of Any where ArrayOfTextStrings | PDF::COS::TextString;
-    multi sub coerce(Str $s is rw, IconFitOption) {
-	PDF::COS.coerce($s, PDF::COS::TextString)
-    }
-    multi sub coerce(Array $a is rw, IconFitOption) {
-	for $a.keys {
-	    PDF::COS.coerce( $a[$_],  PDF::COS::TextString)
-	}
-    }
+    has Numeric @.A is entry(:len(2));           # (Optional) An array of two numbers between 0.0 and 1.0 indicating the fraction of leftover space to allocate at the left and bottom of the icon. A value of [0.0 0.0] positions the icon at the bottom-left corner of the annotation rectangle. A value of [0.5 0.5] centers it within the rectangle. This entry is used only if the icon is scaled proportionally. Defaultvalue: [0.5 0.5]. 
 
-    has IconFitOption $.V is entry(:&coerce, :inherit);
-    has IconFitOption $.DV is entry(:&coerce, :inherit);
-
-    has IconFitOption @.Opt is entry(:&coerce);  #| (Required; choice fields only) An array of options to be presented to the user. Each element of the array can take either of two forms:
-    #| • A text string representing one of the available options
-    #| • A two-element array consisting of a text string representing one of the available options and a default appearance string for constructing the item’s appearance dynamically at viewing time
-
-    has Numeric @.A is entry(:len(2));           #| (Optional) An array of two numbers between 0.0 and 1.0 indicating the fraction of leftover space to allocate at the left and bottom of the icon. A value of [0.0 0.0] positions the icon at the bottom-left corner of the annotation rectangle. A value of [0.5 0.5] centers it within the rectangle. This entry is used only if the icon is scaled proportionally. Defaultvalue: [0.5 0.5]. 
-
-    has Bool $.FB;                               #| (Optional; PDF 1.5) If true, indicates that the button appearance should be scaled to fit fully within the bounds of the annotation without taking into consideration the line width of the border. Default value: false.
+    has Bool $.FB;                               # (Optional; PDF 1.5) If true, indicates that the button appearance should be scaled to fit fully within the bounds of the annotation without taking into consideration the line width of the border. Default value: false.
 
 }

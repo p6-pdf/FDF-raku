@@ -3,7 +3,7 @@
     "version"     : "0.0.1",
     "description" : "Classes for FDF (PDF Forms Data Definition)",
     "depends"     : [ "PDF::Class", "PDF" ],
-    "source-url"  : "git://github.com/p6-pdf/p6-PDF-FDF.git",
+    "source-url"  : "git://github.com/p6-pdf/FDF-p6.git",
     "provides"    : {
 
         "FDF" : "lib/FDF.pm",
@@ -11,7 +11,6 @@
         "FDF::Catalog"    : "lib/FDF/Catalog.pm",
         "FDF::Dict"       : "lib/FDF/Dict.pm",
 
-        "FDF::Actions"    : "lib/FDF/Actions.pm",
         "FDF::Annot"      : "lib/FDF/Annot.pm",
         "FDF::Field"      : "lib/FDF/Field.pm",
         "FDF::IconFit"    : "lib/FDF/IconFit.pm",

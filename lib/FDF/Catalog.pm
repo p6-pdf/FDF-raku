@@ -7,10 +7,9 @@ role FDF::Catalog
 
     use PDF::COS::Tie;
 
-    # See [PDF 32000 Table 242 Entries in the FDF catalog dictionary
+    # See [PDF 32000 Table 242 Entries in the FDF catalog dictionary]
     use PDF::COS::Tie::Hash;
     use PDF::COS::Name;
-    use PDF::Filespec :File, :&to-file;
 
     has PDF::COS::Name $.Version is entry;         # (Optional; PDF 1.4) The version of the PDF specification to which the document conforms (for example, 1.4)
 
