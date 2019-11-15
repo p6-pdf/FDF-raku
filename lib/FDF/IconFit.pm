@@ -1,20 +1,20 @@
 use v6;
 
-use PDF::DAO::Tie;
-use PDF::DAO::Tie::Hash;
+use PDF::COS::Tie;
+use PDF::COS::Tie::Hash;
 
 # FDF Appearance Dictionary definition
 
 role FDF::IconFit
-    does PDF::DAO::Tie::Hash {
+    does PDF::COS::Tie::Hash {
 
     # See [PDF 1.7 TABLE 8.100 Entries in an FDF named page reference dictionary]
 
-    use PDF::DAO::Tie;
-    use PDF::DAO::Name;
-    use PDF::DAO::TextString;
+    use PDF::COS::Tie;
+    use PDF::COS::Name;
+    use PDF::COS::TextString;
 
-    my subset SWVal of PDF::DAO::Name where 'A' | 'B' | 'S' | 'N';
+    my subset SWVal of PDF::COS::Name where 'A' | 'B' | 'S' | 'N';
     has SWVal $.SW is entry;     #| (Optional) The circumstances under which the icon should be scaled inside the annotation rectangle:
     #| A: Always scale.
     #| B: Scale only when the icon is bigger than the annotation rectangle.
@@ -22,14 +22,14 @@ role FDF::IconFit
     #| N: Never scale.
     #| Default value: A. 
 
-    my subset ArrayOfTextStrings of Array where { !.first( !*.isa(PDF::DAO::TextString) ) }
-    my subset IconFitOption of Any where ArrayOfTextStrings | PDF::DAO::TextString;
+    my subset ArrayOfTextStrings of Array where { !.first( !*.isa(PDF::COS::TextString) ) }
+    my subset IconFitOption of Any where ArrayOfTextStrings | PDF::COS::TextString;
     multi sub coerce(Str $s is rw, IconFitOption) {
-	PDF::DAO.coerce($s, PDF::DAO::TextString)
+	PDF::COS.coerce($s, PDF::COS::TextString)
     }
     multi sub coerce(Array $a is rw, IconFitOption) {
 	for $a.keys {
-	    PDF::DAO.coerce( $a[$_],  PDF::DAO::TextString)
+	    PDF::COS.coerce( $a[$_],  PDF::COS::TextString)
 	}
     }
 

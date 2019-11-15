@@ -3,14 +3,13 @@ use v6;
 use PDF;
 use PDF::Class::Loader;
 
-#| DOM entry-point. either a trailer dict or an XRef stream
 class FDF
     is PDF {
 
     # See [PDF 1.7 TABLE 8.91 Entry in the FDF trailer dictionary]
-    use PDF::DAO::Tie;
+    use PDF::COS::Tie;
     use FDF::Catalog;
-    use PDF::DAO;
+    use PDF::COS;
 
     has FDF::Catalog $.Root is entry(:required,:indirect);
 
@@ -36,18 +35,18 @@ class FDF
 	die "FDF file has wrong type: " ~ $doc.reader.type
 	    unless $doc.reader.type eq 'FDF';
 
-	PDF::DAO.coerce($doc<Root>, FDF::Catalog);
+	PDF::COS.coerce($doc<Root>, FDF::Catalog);
 	$doc;
     }
 
-    #| Save back to the original file. Note that incremental update is not applicable FDF
+    #| Save back to the original file. Note that incremental update is not applicable to FDF
     method update(|c) {
 	$.save-as($.reader.file-name, |c);
     }
 
     method cb-init {
 	self<Root> //= { :FDF{} };
-	PDF::DAO.coerce(self<Root>, FDF::Catalog);
+	PDF::COS.coerce(self<Root>, FDF::Catalog);
     }
 
 }

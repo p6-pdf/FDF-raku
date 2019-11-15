@@ -3,7 +3,7 @@ use v6;
 
 use PDF::Struct::Doc;
 use PDF::FDF;
-use PDF::DAO::Type::Encrypt :PermissionsFlag;
+use PDF::COS::Type::Encrypt :PermissionsFlag;
 
 #| list all fields and current values
 multi sub MAIN(

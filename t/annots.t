@@ -9,7 +9,7 @@ my $annots = $fdf.Root.FDF.Annots;
 
 is +$annots, 8, 'number of annots';
 
-isa-ok $annots[0], (require ::('PDF::Annot::Square')), 'annot role';
+isa-ok $annots[0], 'PDF::Annot::Square', 'annot role';
 does-ok $annots[0], (require ::('FDF::Annot')), 'annot role role';
 is $annots[0].Page, 3, 'annot.Page';
 

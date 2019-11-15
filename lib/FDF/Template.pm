@@ -1,15 +1,15 @@
 use v6;
 
-use PDF::DAO::Tie;
-use PDF::DAO::Tie::Hash;
+use PDF::COS::Tie;
+use PDF::COS::Tie::Hash;
 
 # FDF Field definition
 
 role FDF::Template
-    does PDF::DAO::Tie::Hash {
+    does PDF::COS::Tie::Hash {
 
     # See [ PDF 1.7 TABLE 8.99 Entries in an FDF template dictionary]
-    use PDF::DAO::Tie;
+    use PDF::COS::Tie;
 
     has Hash $.TRef is entry(:required);   #| (Required) A named page reference dictionary specifying the location of the template. 
     use FDF::Field;

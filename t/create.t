@@ -1,6 +1,7 @@
 use v6;
 use Test;
 use FDF;
+use FDF::Dict;
 
 # ensure consistant document ID generation
 srand(123456);
@@ -8,7 +9,7 @@ srand(123456);
 lives-ok { FDF.new.save-as: "t/fdf/create-minimal.fdf" }, "create minimal";
 
 my $fdf-doc = FDF.new;
-my $fdf = $fdf-doc.Root.FDF;
+my FDF::Dict $fdf = $fdf-doc.Root.FDF;
 
 $fdf.F = 'create-simple.fdf';
 my $fields = $fdf.Fields //= [];
