@@ -14,7 +14,6 @@
         "FDF::Annot"      : "lib/FDF/Annot.pm",
         "FDF::Field"      : "lib/FDF/Field.pm",
         "FDF::IconFit"    : "lib/FDF/IconFit.pm",
-        "FDF::Interface"  : "lib/FDF/Interface.pm",
         "FDF::JavaScript" : "lib/FDF/JavaScript.pm",
         "FDF::Page"       : "lib/FDF/Page.pm",
         "FDF::Template"   : "lib/FDF/Template.pm",

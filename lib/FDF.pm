@@ -1,11 +1,10 @@
 use v6;
 
 use PDF;
-use FDF::Interface;
 use PDF::Class::Loader;
 
 class FDF
-    is PDF does FDF::Interface {
+    is PDF {
 
     # See [PDF 1.7 TABLE 8.91 Entry in the FDF trailer dictionary]
     use PDF::COS::Tie;
@@ -31,13 +30,8 @@ class FDF
     }
 
     method open(|c) {
-	my $doc = callsame;
-
-	die "FDF file has wrong type: " ~ $doc.reader.type
-	    unless $doc.reader.type eq 'FDF';
-
-	PDF::COS.coerce($doc<Root>, FDF::Catalog);
-	$doc;
+        # make sure it really is an FDF
+	callwith( :type<FDF>, |c);
     }
 
     #| Save back to the original file. Note that incremental update is not applicable to FDF
