@@ -1,10 +1,11 @@
 use v6;
 
 use PDF;
+use FDF::Interface;
 use PDF::Class::Loader;
 
 class FDF
-    is PDF {
+    is PDF does FDF::Interface {
 
     # See [PDF 1.7 TABLE 8.91 Entry in the FDF trailer dictionary]
     use PDF::COS::Tie;
