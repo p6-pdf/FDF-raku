@@ -1,22 +1,23 @@
-{   "perl"        : "6",
-    "name"        : "FDF",
-    "version"     : "0.0.1",
-    "description" : "Classes for FDF (PDF Forms Data Definition)",
-    "depends"     : [ "PDF::Class", "PDF" ],
-    "source-url"  : "git://github.com/p6-pdf/FDF-p6.git",
-    "provides"    : {
-
-        "FDF" : "lib/FDF.pm",
-
-        "FDF::Catalog"    : "lib/FDF/Catalog.pm",
-        "FDF::Dict"       : "lib/FDF/Dict.pm",
-
-        "FDF::Annot"      : "lib/FDF/Annot.pm",
-        "FDF::Field"      : "lib/FDF/Field.pm",
-        "FDF::IconFit"    : "lib/FDF/IconFit.pm",
-        "FDF::JavaScript" : "lib/FDF/JavaScript.pm",
-        "FDF::Page"       : "lib/FDF/Page.pm",
-        "FDF::Template"   : "lib/FDF/Template.pm",
-        "FDF::TRef"       : "lib/FDF/TRef.pm"
-    }
+{
+  "depends": [
+    "PDF::Class",
+    "PDF"
+  ],
+  "description": "Classes for FDF (PDF Forms Data Definition)",
+  "name": "FDF",
+  "perl": "6",
+  "provides": {
+    "FDF": "lib/FDF.rakumod",
+    "FDF::Annot": "lib/FDF/Annot.rakumod",
+    "FDF::Catalog": "lib/FDF/Catalog.rakumod",
+    "FDF::Dict": "lib/FDF/Dict.rakumod",
+    "FDF::Field": "lib/FDF/Field.rakumod",
+    "FDF::IconFit": "lib/FDF/IconFit.rakumod",
+    "FDF::JavaScript": "lib/FDF/JavaScript.rakumod",
+    "FDF::Page": "lib/FDF/Page.rakumod",
+    "FDF::TRef": "lib/FDF/TRef.rakumod",
+    "FDF::Template": "lib/FDF/Template.rakumod"
+  },
+  "source-url": "git://github.com/p6-pdf/FDF-p6.git",
+  "version": "0.0.1"
 }
