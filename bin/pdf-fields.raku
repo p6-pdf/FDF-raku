@@ -1,8 +1,8 @@
 #!/usr/bin/env perl6
 use v6;
 
-use PDF::Struct::Doc;
-use PDF::FDF;
+use PDF::Class;
+use FDF;
 use PDF::COS::Type::Encrypt :PermissionsFlag;
 
 #| list all fields and current values
@@ -11,15 +11,15 @@ multi sub MAIN(
     Bool :$list!,
     Str  :$password = '',   #| password for the PDF/FDF, if encrypted
     ) {
-    my $doc;
+    my PDF::Class $doc;
     my @fields;
 
     if $infile.IO.extension.lc eq 'fdf' {
-        $doc = PDF::FDF.open($infile, :$password);
+        $doc = FDF.open($infile, :$password);
         @fields = $doc.fields;
     }
     else {
-        $doc = PDF::Struct::Doc.open($infile, :$password);
+        $doc .= open($infile, :$password);
         @fields = $doc.Root.AcroForm.fields
 	    if $doc.Root.?AcroForm;
     }
@@ -59,7 +59,7 @@ multi sub MAIN(
     Str  :$password = '',
     *@field-list) {
 
-    my $doc = PDF::Struct::Doc.open($infile, :$password);
+    my PDF::Class $doc .= open($infile, :$password);
     die "$infile has no fields defined"
 	unless $doc.Root.AcroForm;
 
@@ -71,7 +71,7 @@ multi sub MAIN(
     if $import.defined {
         die "--import file does not have '.fdf' extension"
 	    unless $import.IO.extension.lc eq 'fdf';
-	my $fdf = PDF::FDF.open: $import;
+	my $fdf = FDF.open: $import;
 
 	my @import-fields = $fdf.fields;
 	my @ignored;
@@ -134,10 +134,7 @@ multi sub MAIN(
     Bool :$export!,
     Str  :$password = '',   #| password for the PDF, if encrypted
     ) {
-    my $doc;
-    my @fields;
-
-    $doc = PDF::Struct::Doc.open($infile, :$password);
+    my PDF::Class $doc .= open($infile, :$password);
     my @pdf-fields = $doc.Root.AcroForm.fields
 	    if $doc.Root.?AcroForm;
  
@@ -147,7 +144,7 @@ multi sub MAIN(
     die "Output file does not have an .fdf or .json extension: $outfile"
 	unless $outfile.IO.extension ~~ /:i [fdf|json] $/;
 
-    my $fdf = PDF::FDF.new;
+    my FDF $fdf .= new();
     my $fdf-dict = $fdf.Root.FDF;
     $fdf-dict.F = $infile.IO.basename;
     my $fdf-fields = $fdf-dict.Fields //= [];
@@ -170,13 +167,13 @@ multi sub MAIN(
 
 =head1 NAME
 
-pdf-fields.p6 - Manipulate PDF/FDF fields
+pdf-fields.raku - Manipulate PDF/FDF fields
 
 =head1 SYNOPSIS
 
- pdf-fields.p6 --list infile.[pdf|fdf]
- pdf-fields.p6 --fill [--save-as outfile.pdf] [options] infile.pdf --import=values.fdf [field value ...]
- pdf-fields.p6 --export infile.pdf [outfile.fdf]
+ pdf-fields.raku --list infile.[pdf|fdf]
+ pdf-fields.raku --fill [--save-as outfile.pdf] [options] infile.pdf --import=values.fdf [field value ...]
+ pdf-fields.raku --export infile.pdf [outfile.fdf]
 
  Options
    --list               list fields and current values

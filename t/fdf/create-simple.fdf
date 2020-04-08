@@ -3,17 +3,12 @@
 1 0 obj <<
   /FDF <<
     /F (create-simple.fdf)
-    /Fields [ <<
-        /T /Hello
-        /V (World)
-      >> ]
-    /ID [ <308b4244b3437c4e7b3a67166c885e43> <308b4244b3437c4e7b3a67166c885e43> ]
+    /Fields [ << /T /Hello /V (World) >> ]
+    /ID [ <2e969056b6363ff948efc28bbb24a6b6> <2e969056b6363ff948efc28bbb24a6b6> ]
   >>
 >>
 endobj
 
 trailer
-<<
-  /Root 1 0 R
->>
+<< /Root 1 0 R >>
 %%EOF
