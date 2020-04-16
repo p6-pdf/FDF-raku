@@ -2,6 +2,7 @@ use v6;
 
 use PDF;
 use PDF::Class::Loader;
+use PDF::Class:ver<0.4.4+>;
 
 class FDF
     is PDF {

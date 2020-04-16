@@ -1,6 +1,6 @@
 {
   "depends": [
-    "PDF::Class",
+    "PDF::Class:ver<0.4.3+>",
     "PDF"
   ],
   "description": "Classes for FDF (PDF Forms Data Definition)",

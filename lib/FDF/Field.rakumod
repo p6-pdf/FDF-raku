@@ -9,12 +9,13 @@ role FDF::Field
     use PDF::COS::Dict;
     use PDF::COS::Stream;
 
+    my subset FormLike of PDF::COS::Stream where .<Subtype> ~~ 'Form'; # autoloaded PDF::XObject::Form
     my role APDict
         does PDF::COS::Tie::Hash {
 
-        has PDF::COS::Stream $.N is entry(:required);   # The annotation’s normal appearance.
-        has PDF::COS::Stream $.R is entry;              # (Optional) The annotation’s rollover appearance. Default value: the value of the N entry. 
-        has PDF::COS::Stream $.D is entry;              # (Optional) The annotation’s down appearance. Default value: the value of the entry. 
+        has FormLike $.N is entry(:required);   # The annotation’s normal appearance.
+        has FormLike $.R is entry;              # (Optional) The annotation’s rollover appearance. Default value: the value of the N entry.
+        has FormLike $.D is entry;              # (Optional) The annotation’s down appearance. Default value: the value of the entry.
     }
 
     my role APRefDict
@@ -43,7 +44,7 @@ role FDF::Field
 		@fields.append: $kid.fields;
 	    }
 	}
-	flat @fields;
+	@fields;
     }
 
     has Str $.T is entry(:required);   # (Required) The partial field name
