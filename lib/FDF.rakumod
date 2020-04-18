@@ -27,7 +27,10 @@ class FDF
     }
 
     method fields {
-	self.Root.FDF.fields
+        do with self.Root.FDF { .fields } // [];
+    }
+    method fields-hash(|c) {
+        do with self.Root.FDF { .fields-hash(|c) } // %();
     }
 
     method open(|c) {

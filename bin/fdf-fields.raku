@@ -22,14 +22,13 @@ multi sub MAIN(
     my @fields = $doc.fields;
 
     if @fields {
-        my $n = 0;
         for @fields {
             my $key = .TU if $labels;
             $key //= .T // '???';
             # value is commonly a text-string or name, but can
             # also be dictionary object (e.g. PDF::Signature)
             my $value = (.V // '').perl;
-            say "{++$n}. $key: $value";
+            say "$key: $value";
         }
     }
     else {
@@ -62,9 +61,10 @@ sub get-pdf-fdf($file, $file2) {
 multi sub MAIN(
     Str $file,
     Str $file2?,
-    Bool :$import! where .so,
+    Bool :import($)! where .so,
     PDF-File :$save-as,
     Bool :$appearances,
+    Bool :$actions,
     Str  :$background,
     Str  :$password = '',
 ) {
@@ -86,14 +86,9 @@ multi sub MAIN(
 
     for @fdf-fields -> $fdf-field {
 	my $key = $fdf-field.T;
-	my $val = $fdf-field.V
-	    // next;
 
 	if %fields{$key}:exists {
-	    %fields{$key}.V = $val;
-            if $appearances && ($fdf-field<AP>:exists) {
-                %fields{$key}.AP = $fdf-field.AP;
-            }
+            $fdf-field.import-to: %fields{$key}, :$appearances, :$actions;
 	}
 	else {
 	    @ignored.push: $key;
@@ -136,7 +131,7 @@ multi sub MAIN(
 	for $pdf-field.keys {
 	    next if $_ ~~ 'Kids' | 'Type' | 'Subtype' || ! $fdf-field.can($_);
 	    $fdf-field."$_"() = $pdf-field{$_};
-	}
+        }
     }
 
     note "saving $fdf-file...";
