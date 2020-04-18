@@ -4,7 +4,6 @@ use v6;
 use PDF;
 use PDF::Class;
 use FDF;
-use PDF::COS::Type::Encrypt :PermissionsFlag;
 
 my subset FDF-File of Str where !.defined || .IO.extension.lc ~~ 'fdf'|'json';
 my subset PDF-File of Str where !.defined || .IO.extension.lc ~~ 'pdf';
@@ -65,36 +64,15 @@ multi sub MAIN(
     PDF-File :$save-as,
     Bool :$appearances,
     Bool :$actions,
+    Bool :$drm = True,
     Str  :$password = '',
 ) {
     (my PDF-File $pdf-file, my FDF-File $fdf-file) = get-pdf-fdf($file, $file2);
 
     my PDF::Class $pdf .= open($pdf-file, :$password);
-    my %fields = $pdf.fields-hash;
-
-    die "$pdf-file has no fields defined"
-	unless %fields;
-
-    die "This PDF forbids modification\n"
-	unless $pdf.permitted( PermissionsFlag::Modify );
-
     my FDF $fdf .= open: $fdf-file;
 
-    my @fdf-fields = $fdf.fields;
-    my @ignored;
-
-    for @fdf-fields -> $fdf-field {
-	my $key = $fdf-field.T;
-
-	if %fields{$key}:exists {
-            $fdf-field.import-to: %fields{$key}, :$appearances, :$actions;
-	}
-	else {
-	    @ignored.push: $key;
-	}
-    }
-    warn "unknown import fields were ignored: @ignored[]"
-        if @ignored;
+    $fdf.import-to: $pdf, :$appearances, :$actions, :$drm;
 
     with $save-as {
         $pdf.save-as( $_ );
@@ -115,21 +93,8 @@ multi sub MAIN(
     ) {
     (my PDF-File $pdf-file, my FDF-File $fdf-file) = get-pdf-fdf($file, $file2);
     my PDF::Class $pdf .= open($pdf-file, :$password);
-    my @pdf-fields = $pdf.fields;
- 
-    die "PDF has no AcroForm fields: $pdf-file"
-	unless @pdf-fields;
-
     my FDF $fdf .= new();
-    my $fdf-dict = $fdf.Root.FDF;
-    $fdf-dict.F = $fdf-file.IO.basename;
-    my $fdf-fields = $fdf-dict.Fields //= [];
-
-    for 0..^ +@pdf-fields {
-        my $pdf-field = @pdf-fields[$_];
-	my $fdf-field = $fdf-fields.push: {};
-        $fdf-field.export-from: $pdf-field, :$appearances, :$actions;
-    }
+    $fdf.export-from: $pdf, :$appearances, :$actions;
 
     note "saving $fdf-file...";
     $fdf.save-as: $fdf-file;

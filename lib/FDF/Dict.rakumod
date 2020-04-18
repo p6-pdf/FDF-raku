@@ -14,7 +14,7 @@ role FDF::Dict
 
     has File $.F is entry(:alias<file>, :coerce(&to-file));                         # Optional) The source file or target file: the PDF document file that this FDF file was exported from or is intended to be imported into.
 
-    has Str @.ID is entry(:len(2));               # (Optional) An array of two byte strings constituting a file identifier (see Section 10.3, “File Identifiers”) for the source or target file designated by F, taken from the ID entry in the file’s trailer dictionary
+    has Str @.ID is entry(:len(2));               # (Optional) An array of two byte strings constituting a file identifier for the source or target file designated by F, taken from the ID entry in the file’s trailer dictionary
 
     use FDF::Field;
     has FDF::Field @.Fields is entry;  # (Optional) An array of FDF field dictionaries describing the root fields (those with no ancestors in the field hierarchy) to be exported or imported. This entry and the Pages entry may not both be present.
@@ -42,7 +42,7 @@ role FDF::Dict
 
     has Str $.Target is entry;                   # (Optional; PDF 1.4) The name of a browser frame in which the underlying PDF document is to be opened. This mimics the behavior of the target attribute in HTML < href > tags.
 
-    has Str @.EmbeddedFDFs is entry;             # (Optional; PDF 1.4) An array of file specifications (see Section 3.10, “File Specifications”) representing other FDF files embedded within this one
+    has File @.EmbeddedFDFs is entry(:coerce(&to-file));             # (Optional; PDF 1.4) An array of file specifications representing other FDF files embedded within this one
 
     use FDF::JavaScript;
     has FDF::JavaScript $.JavaScript is entry; # (Optional; PDF 1.4) A JavaScript dictionary
