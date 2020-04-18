@@ -11,8 +11,11 @@ role FDF::Field
     use PDF::COS::Name;
     use PDF::COS::Dict;
     use PDF::COS::Stream;
+    # PDF::Class
     use PDF::Class::Defs :TextOrStream;
+    use PDF::Annot;
     use PDF::Field;
+    use PDF::Field::Button;
 
     my subset FormLike of PDF::COS::Stream where .<Subtype> ~~ 'Form'; # autoloaded PDF::XObject::Form
     my role APDict
@@ -77,61 +80,86 @@ role FDF::Field
     has PDF::COS::Dict $.AA is entry(:alias<additional-actions>); # (Optional) An additional-actions dictionary defining the field’s behavior in response to various trigger events
     has TextOrStream $.RV is entry(:alias<rich-text>, :coerce(&coerce-text-or-stream));                 # (Optional; PDF 1.5) A rich text string
 
-    method !set-key($pdf-fld) {
-        with $pdf-fld.key -> $pk {
-            with self.key {
-                warn "field keys do not  match: FDF={self.key} PDF:$pk"
-                    unless self.key eq $pk;
+    sub set-key($dest-fld, $src-fld) {
+        with $src-fld<T> -> $pk {
+            with $dest-fld<T> {
+                warn "field keys do not  match: FDF={$dest-fld<T>} PDF:$pk"
+                    unless $dest-fld<T> eq $pk;
             }
             else {
-                self.key = $_;
+                $dest-fld<T> = $_;
             }
         }
         else {
-            with self.key {
-                $pdf-fld.key = $_;
+            with $dest-fld<T> {
+                $src-fld<T> = $_;
             }
             else {
                 warn "no Form keys found /T entry";
             }
         }
     }
+
     # import values into a PDF field from this FDF field
-    method import-to(PDF::Field:D $pdf-fld, Bool :$appearances, Bool :$actions) {
+    method import-to(PDF::Field:D $fld, Bool :$appearances, Bool :$actions) {
+        set-key(self, $fld);
 
-        self!set-key: $pdf-fld;
-
-        $pdf-fld.V = $_ with self.V;
-        $pdf-fld.RV = $_ with self.RV;
+        $fld.V = $_ with self.V;
+        $fld.RV = $_ with self.RV;
 
         with self.F {
-            $pdf-fld<F> = $_;
+            $fld<F> = $_;
         }
         else {
-            given ($pdf-fld<F> //= 0) -> $f is rw {
+            given ($fld<F> //= 0) -> $f is rw {
                 $f +|= $_ with self.SetF;
                 $f -= ($f +& $_) with self.ClrF;
             }
         }
 
-        with $pdf-fld.Ff {
-            $pdf-fld<Ff> = $_;
+        with $fld.Ff {
+            $fld<Ff> = $_;
         }
         else {
-            given $pdf-fld<Ff> //= 0 -> $f is rw {
+            given $fld<Ff> //= 0 -> $f is rw {
                 $f +|= $_ with self.SetFf;
                 $f -= ($f +& $_) with self.ClrFf;
             }
         }
         
         if $appearances {
-            $pdf-fld.AP = $_ with self.AP;
-            $pdf-fld.IF = $_ with self.IF;
+            $fld.AP = $_ with self.AP;
+            warn "todo .IF()" with self.IF;
         }
 
         if $$actions {
-            $pdf-fld.A = $_ with self.A;
-            $pdf-fld.AA = $_ with self.AA;
+            $fld.A = $_ with self.A;
+            $fld.AA = $_ with self.AA;
+        }
+    }
+
+    # PDF this FDF field from the input PDF field
+    method export-from(PDF::Field:D $fld, Bool :$appearances, Bool :$actions) {
+        set-key($fld, self);
+
+        self.V = $fld.V // '';
+        self.RV = $_ with $fld.RV;
+
+        unless self.SetF || self.ClrF {
+            self.F = $_ with $fld<F>;
+        }
+
+        unless self.SetFf || self.ClrFf {
+            self.Ff = $_ with $fld.Ff;
+        }
+        
+        if $appearances {
+            self.AP = $_ with $fld.AP;
+        }
+
+        if $$actions {
+            self.A  = $_ with $fld.A;
+            self.AA = $_ with $fld.AA;
         }
     }
 

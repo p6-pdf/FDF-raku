@@ -65,7 +65,6 @@ multi sub MAIN(
     PDF-File :$save-as,
     Bool :$appearances,
     Bool :$actions,
-    Str  :$background,
     Str  :$password = '',
 ) {
     (my PDF-File $pdf-file, my FDF-File $fdf-file) = get-pdf-fdf($file, $file2);
@@ -110,6 +109,8 @@ multi sub MAIN(
     Str $file,
     Str $file2?,
     Bool :export($)! where .so;
+    Bool :$appearances,
+    Bool :$actions,
     Str  :$password = '',   #| password for the PDF, if encrypted
     ) {
     (my PDF-File $pdf-file, my FDF-File $fdf-file) = get-pdf-fdf($file, $file2);
@@ -127,11 +128,7 @@ multi sub MAIN(
     for 0..^ +@pdf-fields {
         my $pdf-field = @pdf-fields[$_];
 	my $fdf-field = $fdf-fields.push: {};
-	# pretty simple ATM, just copy common fields
-	for $pdf-field.keys {
-	    next if $_ ~~ 'Kids' | 'Type' | 'Subtype' || ! $fdf-field.can($_);
-	    $fdf-field."$_"() = $pdf-field{$_};
-        }
+        $fdf-field.export-from: $pdf-field, :$appearances, :$actions;
     }
 
     note "saving $fdf-file...";
