@@ -126,7 +126,7 @@ role FDF::Field
                 $f -= ($f +& $_) with self.ClrFf;
             }
         }
-        
+
         if $appearances {
             $fld.AP = $_ with self.AP;
             warn "todo .IF()" with self.IF;
@@ -152,7 +152,7 @@ role FDF::Field
         unless self.SetFf || self.ClrFf {
             self.Ff = $_ with $fld.Ff;
         }
-        
+
         if $appearances {
             self.AP = $_ with $fld.AP;
         }

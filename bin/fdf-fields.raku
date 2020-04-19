@@ -9,6 +9,10 @@ my subset FDF-File of Str where !.defined || .IO.extension.lc ~~ 'fdf'|'json';
 my subset PDF-File of Str where !.defined || .IO.extension.lc ~~ 'pdf';
 my subset PDF-or-FDF-File where PDF-File|FDF-File;
 
+my %*SUB-MAIN-OPTS =
+  :named-anywhere,    # allow named variables at any location 
+;
+
 #| list all fields and current values
 multi sub MAIN(
     PDF-or-FDF-File:D $infile,
@@ -90,11 +94,12 @@ multi sub MAIN(
     Bool :$appearances,
     Bool :$actions,
     Str  :$password = '',   #| password for the PDF, if encrypted
+    *%edits,
     ) {
     (my PDF-File $pdf-file, my FDF-File $fdf-file) = get-pdf-fdf($file, $file2);
     my PDF::Class $pdf .= open($pdf-file, :$password);
     my FDF $fdf .= new();
-    $fdf.export-from: $pdf, :$appearances, :$actions;
+    $fdf.export-from: $pdf, :$appearances, :$actions, :%edits;
 
     note "saving $fdf-file...";
     $fdf.save-as: $fdf-file;
@@ -108,21 +113,21 @@ fdf-fields.raku - Manipulate FDF fields
 
 =head1 SYNOPSIS
 
- fdf-fields.raku --list=infile.[pdf|fdf]
- fdf-fields.raku --import=infile.fdf [infile.pdf] [--save-as outfile.pdf] [options]
- fdf-fields.raku --export=outfile.fdf [infile.pdf]
+ fdf-fields.raku --list infile.[pdf|fdf]
+ fdf-fields.raku --import infile.fdf [infile.pdf] [--save-as outfile.pdf] [options]
+ fdf-fields.raku --export outfile.fdf [infile.pdf]
 
  Options
-   --list infile.[pdf|fdf]             % list fields and current values
-   --import=infile.fdf [outfile.pdf]   % import fields from an fdf file
-       --save-as=file.pdf              % - save to a new file
-   --export=outfile.fdf [infile.pdf]   % export PDF fields to an FDF
+   --list infile.[pdf|fdf]                               % list fields and current values
+   --import infile.fdf [outfile.pdf]                     % import fields from an fdf file
+   --export outfile.fdf [infile.pdf] :key=new-value ...  % export PDF fields to an FDF
 
  General Options:
-   --password           provide user/owner password for an encrypted PDF
+   --password                 % provide user/owner password for an encrypted PDF
+   --save-as=file.[fdf|pdf]   % save to a new file
 
 =head1 DESCRIPTION
 
-List, import or export FDF form fields.
+List, import, export or fill FDF form fields.
 
 =end pod

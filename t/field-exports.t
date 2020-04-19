@@ -22,11 +22,10 @@ does-ok $pdf-field, PDF::Field::Text;
 lives-ok { $pdf-field.check }, 'PDF::Field.check()';
 lives-ok { $fdf-field.check }, 'FDF::Field.check()';
 
-
 lives-ok {$fdf-field.export-from($pdf-field);}
 
 for <T V Ff> {
-    is $fdf-field."$_"(), $pdf-field."$_"(), "export of $_";
+    is $fdf-field."$_"(), %pdf-dict{$_}, "export of $_";
 }
 
 done-testing;
