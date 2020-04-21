@@ -80,7 +80,7 @@ class FDF
             if @ignored;
     }
 
-    method export-from(PDF::Class $pdf, :%edits, |c) {
+    method export-from(PDF::Class $pdf, :%fill, |c) {
         my $fdf-dict = self.Root.FDF;
         $fdf-dict.F = .file-name
            with $pdf.reader;
@@ -97,13 +97,13 @@ class FDF
         for 0..^ +@pdf-fields {
             my $pdf-field = @pdf-fields[$_];
             temp $pdf-field.V = $_
-                with %edits{$pdf-field.T}:delete;
+                with %fill{$pdf-field.T}:delete;
             my $fdf-field = $fdf-fields.push: {};
             $fdf-field.export-from: $pdf-field, |c;
         }
 
-        if %edits {
-            warn "ignoring edits on unknown fields: {%edits.keys.sort.join: ','}";
+        if %fill {
+            warn "ignoring edits on unknown fields: {%fill.keys.sort.join: ','}";
         }
 
         $fdf-fields;

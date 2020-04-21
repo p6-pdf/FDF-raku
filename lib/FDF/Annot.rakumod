@@ -1,6 +1,3 @@
-use v6;
-
-use PDF::COS::Tie;
 use PDF::COS::Tie::Hash;
 
 # FDF Annot Dictionary definition
@@ -10,10 +7,13 @@ role FDF::Annot
 
     # See [PDF-32000 Table 251 – Additional entry for annotation dictionaries in an FDF file]
 
-    # Note PDF::Class::Loader will subclass this as type PDF::Annot and possibly PDF::Field
-
     use PDF::COS::Tie;
+    use PDF::Annot;
+    use PDF::Class::Defs :AnnotLike;
+
     has UInt $.Page is entry;  # (Required for annotations in FDF files) The ordinal page number on which this annotation should appear, where page 0 is the first page.
 
+    multi method coerce(PDF::Annot $annot) { PDF::COS.coerce($annot, FDF::Annot) }
+    multi method coerce(AnnotLike $dict)   { PDF::COS.coerce(PDF::COS.coerce(:$dict), FDF::Annot) }
 }
 

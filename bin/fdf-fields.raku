@@ -94,12 +94,12 @@ multi sub MAIN(
     Bool :$appearances,
     Bool :$actions,
     Str  :$password = '',   #| password for the PDF, if encrypted
-    *%edits,
+    *%fill,
     ) {
     (my PDF-File $pdf-file, my FDF-File $fdf-file) = get-pdf-fdf($file, $file2);
     my PDF::Class $pdf .= open($pdf-file, :$password);
     my FDF $fdf .= new();
-    $fdf.export-from: $pdf, :$appearances, :$actions, :%edits;
+    $fdf.export-from: $pdf, :$appearances, :$actions, :%fill;
 
     note "saving $fdf-file...";
     $fdf.save-as: $fdf-file;
