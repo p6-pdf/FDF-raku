@@ -11,6 +11,6 @@ role FDF::Page
     use PDF::COS::Tie;
 
     use FDF::Template;
-    has FDF::Template @.Templates is entry(:required);  # (Required) An array of FDF template dictionaries describing the named pages that serve as templates on the page. 
-    has Hash $.Info is entry;                           # (Optional) An FDF page information dictionary containing additional information about the page. At the time of publication, no entries have been defined for this dictionary. 
+    has FDF::Template @.Templates is entry(:required);  #| (Required) An array of FDF template dictionaries describing the named pages that serve as templates on the page. 
+    has Hash $.Info is entry;                           #| (Optional) An FDF page information dictionary containing additional information about the page. At the time of publication, no entries have been defined for this dictionary. 
 }

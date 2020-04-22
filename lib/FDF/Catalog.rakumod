@@ -9,10 +9,10 @@ role FDF::Catalog
     use PDF::COS::Tie;
     use PDF::COS::Name;
 
-    has PDF::COS::Name $.Version is entry;         # (Optional; PDF 1.4) The version of the PDF specification to which the document conforms (for example, 1.4)
+    has PDF::COS::Name $.Version is entry;         #| (Optional; PDF 1.4) The version of the PDF specification to which the document conforms (for example, 1.4)
 
     use FDF::Dict;
-    has FDF::Dict $.FDF is entry(:required);       # (Required) The FDF dictionary for this file
+    has FDF::Dict $.FDF is entry(:required);       #| (Required) The FDF dictionary for this file
 
 }
 
