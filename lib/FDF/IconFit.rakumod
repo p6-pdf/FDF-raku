@@ -1,9 +1,18 @@
 use v6;
 
-use PDF::COS::Tie;
-use PDF::COS::Tie::Hash;
+=begin pod
+=head1 NAME
 
-# FDF Appearance Dictionary definition
+FDF::IconFit
+
+=head1 DESCRIPTION
+
+The Icon Fit dictionary specifies how to display the button’s icon within the annotation rectangle of its widget annotation
+
+=head1 METHODS
+=end pod
+
+use PDF::COS::Tie::Hash;
 
 role FDF::IconFit
     does PDF::COS::Tie::Hash {

@@ -16,9 +16,9 @@ my %*SUB-MAIN-OPTS =
 #| list all fields and current values
 multi sub MAIN(
     PDF-or-FDF-File:D $infile,
-    Bool :list($) where .so,
-    Bool :$labels,          #| display labels, rather than keys
-    Str  :$password = '',   #| password for the PDF/FDF, if encrypted
+    Bool :list($) where .so,  #= list mode
+    Bool :$labels,            #= display labels, rather than keys
+    Str  :$password = '',     #= password for the PDF, if encrypted
     ) {
     my $class = $infile ~~ FDF-File ?? FDF !! PDF::Class;
     my PDF $doc = $class.open($infile, :$password);
@@ -66,10 +66,10 @@ multi sub MAIN(
     Str $file2?,
     Bool :import($)! where .so,
     PDF-File :$save-as,
-    Bool :$appearances,
-    Bool :$actions,
-    Bool :$drm = True,
-    Str  :$password = '',
+    Bool :$appearances = True,  #= import actions 
+    Bool :$actions = True,      #= import appearances
+    Bool :$drm = True,          #= enforce DRM
+    Str  :$password = '',       #= password for the PDF, if encrypted
 ) {
     (my PDF-File $pdf-file, my FDF-File $fdf-file) = get-pdf-fdf($file, $file2);
 
@@ -90,10 +90,10 @@ multi sub MAIN(
 multi sub MAIN(
     Str $file,
     Str $file2?,
-    Bool :export($)! where .so;
-    Bool :$appearances,
-    Bool :$actions,
-    Str  :$password = '',   #| password for the PDF, if encrypted
+    Bool :export($)! where .so, #= export mode
+    Bool :$appearances = True,  #= export appearancs
+    Bool :$actions = True,      #= export actions
+    Str  :$password = '',       #= password for the PDF, if encrypted
     *%fill,
     ) {
     (my PDF-File $pdf-file, my FDF-File $fdf-file) = get-pdf-fdf($file, $file2);
@@ -120,6 +120,8 @@ fdf-fields.raku - Manipulate FDF fields
  Options
    --list infile.[pdf|fdf]                               % list fields and current values
    --import infile.fdf [outfile.pdf]                     % import fields from an fdf file
+     --/actions                                          % - don't import JavaScript actio ns
+     --/appearances                                      % - don;t import appearance dictionaries
    --export outfile.fdf [infile.pdf] :key=new-value ...  % export PDF fields to an FDF
 
  General Options:

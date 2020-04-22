@@ -1,18 +1,38 @@
 use v6;
 
+=begin pod
+=head1 NAME
+
+FDF (Form Data Format) Trailer Dictionary
+
+=head1 DESCRIPTION
+
+The trailer of an FDF file enables a reader to find significant objects quickly within the body of the file.  The
+only required key is Root, whose value is an indirect reference to the file’s catalogue dictionary (see
+Table 242). The trailer may optionally contain additional entries for objects that are referenced from within the
+catalogue.
+
+=head1 METHODS
+
+This class inherits from L<PDF> and has most its methods available, including: `new`, `open`, `save-as`, `update`, `Str` and `Blob`.
+
+Note that `encrypt` is not applicable to FDF files.
+
+=end pod
+
 use PDF;
-use PDF::Class::Loader;
-use PDF::Class:ver<0.4.4+>;
+use PDF::Class:v<0.4.4+>;
 use PDF::COS::Type::Encrypt :PermissionsFlag;
 
 class FDF
     is PDF {
 
-    # See [PDF 1.7 TABLE 8.91 Entry in the FDF trailer dictionary]
+    # See [PDF 32000 Table  241 - Entry in the FDF trailer dictionary]
     use PDF::COS::Tie;
     use FDF::Catalog;
     use PDF::COS;
 
+    #| (Required; shall be an indirect reference) The Catalog object for this FDF file
     has FDF::Catalog $.Root is entry(:required, :indirect);
 
     method type { 'FDF' }
@@ -27,6 +47,8 @@ class FDF
 	    !! Nil
     }
 
+    method encrypt { fail "encryption is not applicable to FDF files"; }
+
     method fields {
         do with self.Root.FDF { .fields } // [];
     }
@@ -39,8 +61,8 @@ class FDF
 	callwith( :type<FDF>, |c);
     }
 
-    #| Save back to the original file. Note that incremental update is not applicable to FDF
-    #| There is however a /Differences entry in the FDF dictionary...
+    # Save back to the original file. Note that incremental update is not applicable to FDF
+    # There is however a /Differences entry in the FDF dictionary...
     method update(|c) {
 	$.save-as($.reader.file-name, |c);
     }
