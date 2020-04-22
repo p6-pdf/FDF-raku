@@ -1,6 +1,9 @@
 use v6;
 
 =begin pod
+=head1 NAME
+
+FDF::Page
 
 =head1 DESCRIPTION
 
