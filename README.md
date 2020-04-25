@@ -62,7 +62,6 @@ Classes/Roles in this Distribution
 - [FDF::JavaScript](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/JavaScript.md) - FDF JavaScripts
 - [FDF::NamedPageRef](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/NamedPageRef.md) - FDF Named Page References
 - [FDF::Page](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/Page.md) - FDF Pages to be added
-- [FDF::Field](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/Field.md) - FDF Fields
 - [FDF::Template](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/Template.md) - FDF Page Templates
 
 

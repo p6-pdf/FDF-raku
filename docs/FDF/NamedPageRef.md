@@ -6,13 +6,13 @@ FDF::NamedPageRef
 DESCRIPTION
 ===========
 
-a named page reference dictionary that shall describe the location of external templates or page elements
+a named page reference dictionary that describes the location of external templates or page elements
 
 METHODS
 =======
 
-class PDF::COS::Name $.Name
----------------------------
+class PDF::COS::ByteString $.Name
+---------------------------------
 
 (Required) The name of the referenced page.
 

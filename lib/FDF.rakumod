@@ -33,7 +33,7 @@ class FDF
     use PDF::COS;
 
     #| (Required; shall be an indirect reference) The Catalog object for this FDF file
-    has FDF::Catalog $.Root is entry(:required, :indirect);
+    has FDF::Catalog $.Root is entry(:required, :indirect, :alias<catalog>);
 
     method type { 'FDF' }
     method version returns Version:_ {

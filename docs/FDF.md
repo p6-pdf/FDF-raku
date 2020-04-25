@@ -15,8 +15,8 @@ This class inherits from [PDF](PDF) and has most its methods available, includin
 
 Note that `encrypt` is not applicable to FDF files.
 
-class FDF::Catalog $.Root
--------------------------
+class FDF::Catalog $.Root (catalog)
+-----------------------------------
 
 (Required; shall be an indirect reference) The Catalog object for this FDF file
 

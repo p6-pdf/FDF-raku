@@ -7,8 +7,7 @@ FDF::Page
 
 =head1 DESCRIPTION
 
-This dictionary contains an array of FDF page dictionaries
-describing new pages that are added to the target document.
+This dictionary describes a new page that is added to the target document.
 
 =head1 METHODS
 =end pod

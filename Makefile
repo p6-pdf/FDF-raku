@@ -1,6 +1,6 @@
 SRC=src
 
-all : doc
+all : docs
 
 test :
 	@prove -e"perl6 -I ." t
@@ -9,38 +9,38 @@ loudtest :
 	@prove -e"perl6 -I ." -v t
 
 clean :
-	@rm -f Makefile doc/FDF/*.md doc/FDF/*/*.md
+	@rm -f Makefile docs/FDF/*.md docs/FDF/*/*.md
 
-doc : doc/FDF.md doc/FDF/Annot.md doc/FDF/Catalog.md doc/FDF/Dict.md doc/FDF/Field.md doc/FDF/IconFit.md\
- doc/FDF/JavaScript.md doc/FDF/NamedPageRef.md doc/FDF/Page.md doc/FDF/Template.md
+docs : docs/FDF.md docs/FDF/Annot.md docs/FDF/Catalog.md docs/FDF/Dict.md docs/FDF/Field.md docs/FDF/IconFit.md\
+ docs/FDF/JavaScript.md docs/FDF/NamedPageRef.md docs/FDF/Page.md docs/FDF/Template.md
 
-doc/FDF.md : lib/FDF.rakumod
-	rakudo -I . --doc=Markdown lib/FDF.rakumod > doc/FDF.md
+docs/FDF.md : lib/FDF.rakumod
+	rakudo -I . --doc=Markdown lib/FDF.rakumod > docs/FDF.md
 
-doc/FDF/Annot.md : lib/FDF/Annot.rakumod
-	rakudo -I . --doc=Markdown lib/FDF/Annot.rakumod > doc/FDF/Annot.md
+docs/FDF/Annot.md : lib/FDF/Annot.rakumod
+	rakudo -I . --doc=Markdown lib/FDF/Annot.rakumod > docs/FDF/Annot.md
 
-doc/FDF/Catalog.md : lib/FDF/Catalog.rakumod
-	rakudo -I . --doc=Markdown lib/FDF/Catalog.rakumod > doc/FDF/Catalog.md
+docs/FDF/Catalog.md : lib/FDF/Catalog.rakumod
+	rakudo -I . --doc=Markdown lib/FDF/Catalog.rakumod > docs/FDF/Catalog.md
 
-doc/FDF/Dict.md : lib/FDF/Dict.rakumod
-	rakudo -I . --doc=Markdown lib/FDF/Dict.rakumod > doc/FDF/Dict.md
+docs/FDF/Dict.md : lib/FDF/Dict.rakumod
+	rakudo -I . --doc=Markdown lib/FDF/Dict.rakumod > docs/FDF/Dict.md
 
-doc/FDF/Field.md : lib/FDF/Field.rakumod
-	rakudo -I . --doc=Markdown lib/FDF/Field.rakumod > doc/FDF/Field.md
+docs/FDF/Field.md : lib/FDF/Field.rakumod
+	rakudo -I . --doc=Markdown lib/FDF/Field.rakumod > docs/FDF/Field.md
 
-doc/FDF/IconFit.md : lib/FDF/IconFit.rakumod
-	rakudo -I . --doc=Markdown lib/FDF/IconFit.rakumod > doc/FDF/IconFit.md
+docs/FDF/IconFit.md : lib/FDF/IconFit.rakumod
+	rakudo -I . --doc=Markdown lib/FDF/IconFit.rakumod > docs/FDF/IconFit.md
 
-doc/FDF/JavaScript.md : lib/FDF/JavaScript.rakumod
-	rakudo -I . --doc=Markdown lib/FDF/JavaScript.rakumod > doc/FDF/JavaScript.md
+docs/FDF/JavaScript.md : lib/FDF/JavaScript.rakumod
+	rakudo -I . --doc=Markdown lib/FDF/JavaScript.rakumod > docs/FDF/JavaScript.md
 
-doc/FDF/NamedPageRef.md : lib/FDF/NamedPageRef.rakumod
-	rakudo -I . --doc=Markdown lib/FDF/NamedPageRef.rakumod > doc/FDF/NamedPageRef.md
+docs/FDF/NamedPageRef.md : lib/FDF/NamedPageRef.rakumod
+	rakudo -I . --doc=Markdown lib/FDF/NamedPageRef.rakumod > docs/FDF/NamedPageRef.md
 
-doc/FDF/Page.md : lib/FDF/Page.rakumod
-	rakudo -I . --doc=Markdown lib/FDF/Page.rakumod > doc/FDF/Page.md
+docs/FDF/Page.md : lib/FDF/Page.rakumod
+	rakudo -I . --doc=Markdown lib/FDF/Page.rakumod > docs/FDF/Page.md
 
-doc/FDF/Template.md : lib/FDF/Template.rakumod
-	rakudo -I . --doc=Markdown lib/FDF/Template.rakumod > doc/FDF/Template.md
+docs/FDF/Template.md : lib/FDF/Template.rakumod
+	rakudo -I . --doc=Markdown lib/FDF/Template.rakumod > docs/FDF/Template.md
 
