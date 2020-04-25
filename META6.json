@@ -18,6 +18,6 @@
     "FDF::Page": "lib/FDF/Page.rakumod",
     "FDF::Template": "lib/FDF/Template.rakumod"
   },
-  "source-url": "git://github.com/p6-pdf/FDF-p6.git",
+  "source-url": "git://github.com/pdf-raku/FDF-raku.git",
   "version": "0.0.1"
 }
