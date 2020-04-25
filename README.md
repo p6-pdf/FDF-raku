@@ -53,16 +53,16 @@ annotations seperately from PDF files.
 Classes/Roles in this Distribution
 -------
 
-- [FDF](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF.md) - FDF file
-- [FDF::Annot](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/Annot.md) - FDF Annotations
-- [FDF::Catalog](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/Catalog.md) - FDF Catalog
-- [FDF::Dict](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/Dict.md) - FDF Main Dictionary
-- [FDF::Field](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/Field.md) - FDF Fields
-- [FDF::IconFit](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/IconFit.md) - FDF IconFits
-- [FDF::JavaScript](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/JavaScript.md) - FDF JavaScripts
-- [FDF::NamedPageRef](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/NamedPageRef.md) - FDF Named Page References
-- [FDF::Page](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/Page.md) - FDF Pages to be added
-- [FDF::Template](https://github.com/p6-pdf/FDF-raku/blob/master/doc/FDF/Template.md) - FDF Page Templates
+- [FDF](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF.md) - FDF file
+- [FDF::Annot](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Annot.md) - FDF Annotations
+- [FDF::Catalog](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Catalog.md) - FDF Catalog
+- [FDF::Dict](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Dict.md) - FDF Main Dictionary
+- [FDF::Field](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Field.md) - FDF Fields
+- [FDF::IconFit](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/IconFit.md) - FDF IconFits
+- [FDF::JavaScript](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/JavaScript.md) - FDF JavaScripts
+- [FDF::NamedPageRef](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/NamedPageRef.md) - FDF Named Page References
+- [FDF::Page](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Page.md) - FDF Pages to be added
+- [FDF::Template](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Template.md) - FDF Page Templates
 
 
 
