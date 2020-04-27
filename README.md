@@ -53,16 +53,16 @@ annotations seperately from PDF files.
 Classes/Roles in this Distribution
 -------
 
-- [FDF](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF.md) - FDF file
-- [FDF::Annot](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Annot.md) - FDF Annotations
-- [FDF::Catalog](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Catalog.md) - FDF Catalog
-- [FDF::Dict](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Dict.md) - FDF Main Dictionary
-- [FDF::Field](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Field.md) - FDF Fields
-- [FDF::IconFit](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/IconFit.md) - FDF IconFits
-- [FDF::JavaScript](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/JavaScript.md) - FDF JavaScripts
-- [FDF::NamedPageRef](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/NamedPageRef.md) - FDF Named Page References
-- [FDF::Page](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Page.md) - FDF Pages to be added
-- [FDF::Template](https://github.com/p6-pdf/FDF-raku/blob/master/docs/FDF/Template.md) - FDF Page Templates
+- [FDF](https://pdf-raku.github.io/FDF-raku/FDF) - FDF file
+- [FDF::Annot](https://pdf-raku.github.io/FDF-raku/FDF/Annot) - FDF Annotations
+- [FDF::Catalog](https://pdf-raku.github.io/FDF-raku/FDF/Catalog) - FDF Catalog
+- [FDF::Dict](https://pdf-raku.github.io/FDF-raku/FDF/Dict) - FDF Main Dictionary
+- [FDF::Field](https://pdf-raku.github.io/FDF-raku/FDF/Field) - FDF Fields
+- [FDF::IconFit](https://pdf-raku.github.io/FDF-raku/FDF/IconFit) - FDF IconFits
+- [FDF::JavaScript](https://pdf-raku.github.io/FDF-raku/FDF/JavaScript) - FDF JavaScripts
+- [FDF::NamedPageRef](https://pdf-raku.github.io/FDF-raku/FDF/NamedPageRef) - FDF Named Page References
+- [FDF::Page](https://pdf-raku.github.io/FDF-raku/FDF/Page) - FDF Pages to be added
+- [FDF::Template](https://pdf-raku.github.io/FDF-raku/FDF/Template) - FDF Page Templates
 
 
 
