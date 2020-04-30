@@ -1,9 +1,12 @@
 {
+  "build-depends" : [
+    "Pod::To::Markdown"
+  ],
   "depends": [
     "PDF::Class:ver<0.4.4+>",
     "PDF"
   ],
-  "description": "Classes for FDF (PDF Forms Data Definition)",
+  "description": "Classes for FDF (Forms Data Definition)",
   "name": "FDF",
   "perl": "6",
   "provides": {
