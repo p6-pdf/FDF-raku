@@ -18,7 +18,7 @@ my FDF $fdf .= new;
 my %fill = :email<david.warring@gmail.com>;
 
 # populate form data from the PDF
-$fdf.export-from: $pdf, :%fill;
+$fdf.merge: :from($pdf), :%fill;
 
 note "saving fields :-"
 for $fdf.field-hash.sort {
@@ -37,7 +37,7 @@ my PDF::Class $pdf .= open: "PDF-With-Fields.pdf";
 my FDF $fdf .= open: "PDF-With-Fields.fdf";
 
 # populate form data from the PDF
-$fdf.import-to: $pdf;
+$fdf.merge: :to($pdf);
 
 # save updated fields
 $pdf.update;

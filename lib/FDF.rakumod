@@ -72,10 +72,10 @@ class FDF
 	PDF::COS.coerce(self<Root>, FDF::Catalog);
     }
 
-    method import-to(PDF::Class $pdf, Bool :$drm = True, |c) {
-        my %fields = $pdf.fields-hash;
+    multi method merge(PDF::Class:D :to($pdf)!, Bool :$drm = True, |c) {
+        my %pdf-fields = $pdf.fields-hash;
 
-	unless %fields {
+	unless %pdf-fields {
             my $pdf-file = do with $pdf.reader { .filename } // 'PDF';
             die "$pdf-file has no fields defined";
         }
@@ -91,8 +91,8 @@ class FDF
         for @fdf-fields -> $fdf-field {
 	    my $key = $fdf-field.T;
 
-	    if %fields{$key}:exists {
-                $fdf-field.import-to: %fields{$key}, |c;
+	    if %pdf-fields{$key}:exists {
+                $fdf-field.merge: to => %pdf-fields{$key}, |c;
 	    }
 	    else {
 	        @ignored.push: $key;
@@ -102,7 +102,7 @@ class FDF
             if @ignored;
     }
 
-    method export-from(PDF::Class $pdf, :%fill, |c) {
+    multi method merge(PDF::Class:D :from($pdf)!, :%fill, |c) {
         my $fdf-dict = self.Root.FDF;
         $fdf-dict.F = .file-name
            with $pdf.reader;
@@ -121,7 +121,7 @@ class FDF
             temp $pdf-field.V = $_
                 with %fill{$pdf-field.T}:delete;
             my $fdf-field = $fdf-fields.push: {};
-            $fdf-field.export-from: $pdf-field, |c;
+            $fdf-field.merge: from => $pdf-field, |c;
         }
 
         if %fill {

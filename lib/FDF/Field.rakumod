@@ -137,7 +137,7 @@ role FDF::Field
     }
 
     #| import values into a PDF field from this FDF field
-    method import-to(PDF::Field:D $fld, Bool :$appearances = True, Bool :$actions = True) {
+    multi method merge(PDF::Field:D :to($fld)!, Bool :$appearances = True, Bool :$actions = True) {
         set-key(self, $fld);
 
         $fld.V = $_ with self.V;
@@ -175,7 +175,7 @@ role FDF::Field
     }
 
     #| Populate this FDF field from the PDF field
-    method export-from(PDF::Field:D $fld, Bool :$appearances, Bool :$actions) {
+    multi method merge(PDF::Field:D :from($fld)!, Bool :$appearances, Bool :$actions) {
         set-key($fld, self);
 
         self.V = $fld.V // '';
