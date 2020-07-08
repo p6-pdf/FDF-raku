@@ -94,11 +94,11 @@ class PDF::Class::Defs::TextOrStream $.RV (rich-text)
 
 (Optional; PDF 1.5) A rich text string
 
-### method import-to
+### method merge
 
 ```perl6
-method import-to(
-    PDF::Field:D $fld,
+method merge(
+    PDF::Field:D :to($fld)!,
     Bool :$appearances = Bool::True,
     Bool :$actions = Bool::True
 ) returns Mu
@@ -106,11 +106,11 @@ method import-to(
 
 import values into a PDF field from this FDF field
 
-### method export-from
+### method merge
 
 ```perl6
-method export-from(
-    PDF::Field:D $fld,
+method merge(
+    PDF::Field:D :from($fld)!,
     Bool :$appearances,
     Bool :$actions
 ) returns Mu

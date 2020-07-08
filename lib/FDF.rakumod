@@ -101,6 +101,18 @@ class FDF
         warn "unknown import fields were ignored: @ignored[]"
             if @ignored;
     }
+    multi method merge(Bool :to($) where .so, |c) {
+        my Str $pdf-file = .file-name
+            with self.Root.FDF;
+        with $pdf-file {
+            my PDF::Class $to .= open($_);
+            self.merge: :$to, |c;
+        }
+        else {
+            die "FDF does not contain a source/target PDF";
+        }
+    
+    }
 
     multi method merge(PDF::Class:D :from($pdf)!, :%fill, |c) {
         my $fdf-dict = self.Root.FDF;
@@ -129,6 +141,18 @@ class FDF
         }
 
         $fdf-fields;
+    }
+    multi method merge(Bool :from($) where .so, |c) {
+        my Str $pdf-file = .file-name
+            with self.Root.FDF;
+        with $pdf-file {
+            my PDF::Class $from .= open($_);
+            self.merge: :$from, |c;
+        }
+        else {
+            die "FDF does not contain a source/target PDF";
+        }
+    
     }
 
 }

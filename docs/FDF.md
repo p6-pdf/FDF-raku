@@ -11,7 +11,7 @@ The trailer of an FDF file enables a reader to find significant objects quickly 
 METHODS
 =======
 
-This class inherits from [PDF](PDF) and has most its methods available, including: `new`, `open`, `save-as`, `update`, `Str` and `Blob`.
+This class inherits from [PDF](https://pdf-raku.github.io/PDF-raku) and has most its methods available, including: `new`, `open`, `save-as`, `update`, `Str` and `Blob`.
 
 Note that `encrypt` is not applicable to FDF files.
 

@@ -1,3 +1,7 @@
+DocProj=pdf-raku.github.io
+DocRepo=https://github.com/pdf-raku/$(DocProj)
+DocLinker=../$(DocProj)/etc/resolve-links.raku
+
 all : doc
 
 docs : doc
@@ -12,9 +16,14 @@ clean :
 	@rm -f docs/FDF.md docs/FDF/*.md
 
 docs/%.md : lib/%.rakumod
-	raku -I . --doc=Markdown $< > $@
+	raku -I . --doc=Markdown $< \
+	| raku -p -n $(DocLinker) \
+        > $@
 
-doc : docs/FDF.md docs/FDF/Annot.md docs/FDF/Catalog.md docs/FDF/Dict.md docs/FDF/Field.md docs/FDF/IconFit.md\
+$(DocLinker) :
+	(cd .. && git clone $(DocRepo) $(DocProj))
+
+doc : $(DocLinker) docs/FDF.md docs/FDF/Annot.md docs/FDF/Catalog.md docs/FDF/Dict.md docs/FDF/Field.md docs/FDF/IconFit.md\
  docs/FDF/JavaScript.md docs/FDF/NamedPageRef.md docs/FDF/Page.md docs/FDF/Template.md
 
 docs/FDF.md : lib/FDF.rakumod

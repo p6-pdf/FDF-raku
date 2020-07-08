@@ -10,7 +10,7 @@ FDF::JavaScript
 The JavaScript entry in the FDF dictionary holds a JavaScript dictionary containing JavaScript scripts that
 shall be defined globally at the document level, rather than associated with individual fields. The dictionary may
 contain scripts defining JavaScript functions for use by other scripts in the document, as well as scripts that
-shall be executed immediately before and after the FDF file is imported.
+are executed immediately before and after the FDF file is imported.
 
 =head1 METHODS
 =end pod

@@ -6,7 +6,7 @@ FDF::Page
 DESCRIPTION
 ===========
 
-This dictionary describes a new page that is added to the target document.
+The FDF Page dictionary describes a new page that is added to the target document.
 
 METHODS
 =======

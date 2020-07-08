@@ -1,10 +1,11 @@
 %FDF-1.3
-%¥±ë
-1 0 obj <<
+%¥±ë¼
+1 0 obj
+<<
   /FDF <<
-    /F (create-simple.fdf)
-    /Fields [ << /T /Hello /V (World) >> ]
-    /ID [ <2e969056b6363ff948efc28bbb24a6b6> <2e969056b6363ff948efc28bbb24a6b6> ]
+    /F (t/fdf/create-simple.pdf)
+    /Fields [ << /T /Greeting /V (Hello) >> << /T /Recipient /V (World) >> ]
+    /ID [ <2e969056b6363ff948efc28bbb24a6b6> <1f90af13a6b1ae3c0437b25e643636d1> ]
   >>
 >>
 endobj
