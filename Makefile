@@ -17,12 +17,12 @@ clean :
 
 docs/%.md : lib/FDF/%.rakumod
 	raku -I . --doc=Markdown $< \
-	| raku -p -n $(DocLinker) \
+	| TRAIL=FDF/$* raku -p -n $(DocLinker) \
         > $@
 
 docs/index.md : lib/FDF.rakumod
 	raku -I . --doc=Markdown $< \
-	| raku -p -n $(DocLinker) \
+	| TRAIL=FDF raku -p -n $(DocLinker) \
         > $@
 
 $(DocLinker) :
