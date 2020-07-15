@@ -4,7 +4,22 @@ FDF-raku
 A Raku module for the creation and manipulation of FDF (Form Data Format)
 files, including PDF export and import.
 
-SYNOPSIS
+Classes/Roles in this Distribution
+-------
+
+- [FDF](https://pdf-raku.github.io/FDF-raku) - FDF file
+- [FDF::Annot](https://pdf-raku.github.io/FDF-raku/Annot) - FDF Annotations
+- [FDF::Catalog](https://pdf-raku.github.io/FDF-raku/Catalog) - FDF Catalog
+- [FDF::Dict](https://pdf-raku.github.io/FDF-raku/Dict) - FDF Main Dictionary
+- [FDF::Field](https://pdf-raku.github.io/FDF-raku/Field) - FDF Fields
+- [FDF::IconFit](https://pdf-raku.github.io/FDF-raku/IconFit) - FDF IconFits
+- [FDF::JavaScript](https://pdf-raku.github.io/FDF-raku/JavaScript) - FDF JavaScripts
+- [FDF::NamedPageRef](https://pdf-raku.github.io/FDF-raku/NamedPageRef) - FDF Named Page References
+- [FDF::Page](https://pdf-raku.github.io/FDF-raku/Page) - FDF Pages to be added
+- [FDF::Template](https://pdf-raku.github.io/FDF-raku/Template) - FDF Page Templates
+
+
+Synopsis
 --------
 
 ### Export fields from a PDF to an FDF
@@ -50,23 +65,7 @@ FDF (Form Data Format) is a format for storing form data and formatting or
 annotations seperately from PDF files.
 
 
-Classes/Roles in this Distribution
--------
-
-- [FDF](https://pdf-raku.github.io/FDF-raku) - FDF file
-- [FDF::Annot](https://pdf-raku.github.io/FDF-raku/Annot) - FDF Annotations
-- [FDF::Catalog](https://pdf-raku.github.io/FDF-raku/Catalog) - FDF Catalog
-- [FDF::Dict](https://pdf-raku.github.io/FDF-raku/Dict) - FDF Main Dictionary
-- [FDF::Field](https://pdf-raku.github.io/FDF-raku/Field) - FDF Fields
-- [FDF::IconFit](https://pdf-raku.github.io/FDF-raku/IconFit) - FDF IconFits
-- [FDF::JavaScript](https://pdf-raku.github.io/FDF-raku/JavaScript) - FDF JavaScripts
-- [FDF::NamedPageRef](https://pdf-raku.github.io/FDF-raku/NamedPageRef) - FDF Named Page References
-- [FDF::Page](https://pdf-raku.github.io/FDF-raku/Page) - FDF Pages to be added
-- [FDF::Template](https://pdf-raku.github.io/FDF-raku/Template) - FDF Page Templates
-
-
-
-BUGS AND LIMITATIONS
+Bugs and Limitations
 ----
 Not yet handled:
 

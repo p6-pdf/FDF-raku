@@ -1,11 +1,9 @@
 use v6;
 
 =begin pod
-=head1 NAME
+=head1 role FDF::Catalog
 
-FDF::Catalog
-
-=head1 DESCRIPTION
+=head2 Description
 
 The root node of an FDF file’s object hierarchy is the Catalog dictionary, located by means of the Root entry in
 the file’s trailer dictionary (FDF). The only
@@ -13,7 +11,7 @@ required entry in the catalogue is FDF - an FDF dictionary L<FDF::Dict>, which i
 contains references to other objects describing the file’s contents. The catalogue may also contain an optional
 Version entry identifying the version of the PDF specification to which this FDF file conforms.
 
-=head1 METHODS
+=head2 Methods
 =end pod
 
 use PDF::COS::Tie::Hash;

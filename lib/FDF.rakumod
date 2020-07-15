@@ -1,18 +1,16 @@
 use v6;
 
 =begin pod
-=head1 NAME
+=head1 class FDF (Form Data Format)
 
-FDF (Form Data Format) Trailer Dictionary
-
-=head1 DESCRIPTION
+=head2 Description
 
 The trailer of an FDF file enables a reader to find significant objects quickly within the body of the file.  The
 only required key is Root, whose value is an indirect reference to the file’s catalogue dictionary (see
 Table 242). The trailer may optionally contain additional entries for objects that are referenced from within the
 catalogue.
 
-=head1 METHODS
+=head2 Methods
 
 This class inherits from L<PDF> and has most its methods available, including: `new`, `open`, `save-as`, `update`, `Str` and `Blob`.
 

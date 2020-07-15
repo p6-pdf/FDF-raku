@@ -2,16 +2,14 @@ use v6;
 
 =begin pod
 
-=head1 NAME
+=head1 role FDF::NamedPageRef
 
-FDF::NamedPageRef
-
-=head1 DESCRIPTION
+=head2 Description
 
 a named page reference dictionary that describes
 the location of external templates or page elements
 
-=head1 METHODS
+=head2 Methods
 =end pod
 
 use PDF::COS::Tie::Hash;

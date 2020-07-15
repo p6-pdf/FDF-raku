@@ -1,15 +1,13 @@
 use v6;
 
 =begin pod
-=head1 NAME
+=head1 Role FDF::Dict
 
-FDF::Dict
-
-=head1 DESCRIPTION
+=head2 Description
 
 This is the main dictionary describing the contents of an FDF (Forms Data Format) file.
 
-=head1 METHODS
+=head2 METHODS
 =end pod
 
 use PDF::COS::Tie::Hash;

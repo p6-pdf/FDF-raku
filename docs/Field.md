@@ -2,18 +2,16 @@
  / [FDF](https://pdf-raku.github.io/FDF-raku)
  :: [Field](https://pdf-raku.github.io/FDF-raku/Field)
 
-NAME
-====
+role FDF::Field
+===============
 
-FDF::Field
-
-DESCRIPTION
-===========
+Description
+-----------
 
 Each field in an FDF file is described by an FDF field dictionary. Most of the entries have the same form and meaning as the corresponding entries in a field (PDF::Field) dictionary or a widget annotation dictionary (PDF::Widget). Unless otherwise indicated in the table, importing a field causes the values of the entries in the FDF field dictionary to replace those of the corresponding entries in the field with the same fully qualified name in the target document.
 
-METHODS
-=======
+Methods
+-------
 
 class FDF::Field @.Kids
 -----------------------

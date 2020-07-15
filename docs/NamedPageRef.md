@@ -2,18 +2,16 @@
  / [FDF](https://pdf-raku.github.io/FDF-raku)
  :: [NamedPageRef](https://pdf-raku.github.io/FDF-raku/NamedPageRef)
 
-NAME
-====
+role FDF::NamedPageRef
+======================
 
-FDF::NamedPageRef
-
-DESCRIPTION
-===========
+Description
+-----------
 
 a named page reference dictionary that describes the location of external templates or page elements
 
-METHODS
-=======
+Methods
+-------
 
 class PDF::COS::ByteString $.Name
 ---------------------------------

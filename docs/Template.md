@@ -2,18 +2,16 @@
  / [FDF](https://pdf-raku.github.io/FDF-raku)
  :: [Template](https://pdf-raku.github.io/FDF-raku/Template)
 
-NAME
-====
+role FDF::Template
+==================
 
-FDF::Template
-
-DESCRIPTION
-===========
+Description
+-----------
 
 An FDF template dictionary contains information describing a named page that serves as a template.
 
-METHODS
-=======
+Methods
+-------
 
 class FDF::NamedPageRef $.TRef (page-ref)
 -----------------------------------------

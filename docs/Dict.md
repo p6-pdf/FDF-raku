@@ -2,18 +2,16 @@
  / [FDF](https://pdf-raku.github.io/FDF-raku)
  :: [Dict](https://pdf-raku.github.io/FDF-raku/Dict)
 
-NAME
-====
+Role FDF::Dict
+==============
 
-FDF::Dict
-
-DESCRIPTION
-===========
+Description
+-----------
 
 This is the main dictionary describing the contents of an FDF (Forms Data Format) file.
 
 METHODS
-=======
+-------
 
 class PDF::Filespec::File $.F (file)
 ------------------------------------

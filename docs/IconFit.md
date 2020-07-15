@@ -2,18 +2,16 @@
  / [FDF](https://pdf-raku.github.io/FDF-raku)
  :: [IconFit](https://pdf-raku.github.io/FDF-raku/IconFit)
 
-NAME
-====
+role FDF::IconFit
+=================
 
-FDF::IconFit
-
-DESCRIPTION
-===========
+Description
+-----------
 
 The Icon Fit dictionary specifies how to display the button’s icon within the annotation rectangle of its widget annotation
 
-METHODS
-=======
+Methods
+-------
 
 
 

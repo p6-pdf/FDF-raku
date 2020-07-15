@@ -2,18 +2,16 @@
  / [FDF](https://pdf-raku.github.io/FDF-raku)
  :: [JavaScript](https://pdf-raku.github.io/FDF-raku/JavaScript)
 
-NAME
-====
+role FDF::JavaScript
+====================
 
-FDF::JavaScript
-
-DESCRIPTION
-===========
+Description
+-----------
 
 The JavaScript entry in the FDF dictionary holds a JavaScript dictionary containing JavaScript scripts that shall be defined globally at the document level, rather than associated with individual fields. The dictionary may contain scripts defining JavaScript functions for use by other scripts in the document, as well as scripts that are executed immediately before and after the FDF file is imported.
 
-METHODS
-=======
+Methods
+-------
 
 class PDF::Class::Defs::TextOrStream $.Before
 ---------------------------------------------

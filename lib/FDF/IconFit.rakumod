@@ -1,15 +1,13 @@
 use v6;
 
 =begin pod
-=head1 NAME
+=head1 role FDF::IconFit
 
-FDF::IconFit
-
-=head1 DESCRIPTION
+=head2 Description
 
 The Icon Fit dictionary specifies how to display the button’s icon within the annotation rectangle of its widget annotation
 
-=head1 METHODS
+=head2 Methods
 =end pod
 
 use PDF::COS::Tie::Hash;

@@ -20,8 +20,8 @@ docs/%.md : lib/FDF/%.rakumod
 	| TRAIL=FDF/$* raku -p -n $(DocLinker) \
         > $@
 
-docs/index.md : lib/FDF.rakumod
-	raku -I . --doc=Markdown $< \
+docs/index.md : README.md lib/FDF.rakumod
+	(cat README.md; echo; echo '<hr/>'; echo; raku -I . --doc=Markdown lib/FDF.rakumod) \
 	| TRAIL=FDF raku -p -n $(DocLinker) \
         > $@
 

@@ -1,15 +1,13 @@
 use v6;
 
 =begin pod
-=head1 NAME
+=head1 role FDF::Page
 
-FDF::Page
-
-=head1 DESCRIPTION
+=head2 Description
 
 The FDF Page dictionary describes a new page that is added to the target document.
 
-=head1 METHODS
+=head2 Methods
 =end pod
 
 use PDF::COS::Tie::Hash;

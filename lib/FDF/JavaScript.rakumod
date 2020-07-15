@@ -1,18 +1,16 @@
 use v6;
 
 =begin pod
-=head1 NAME
+=head1 role FDF::JavaScript
 
-FDF::JavaScript
-
-=head1 DESCRIPTION
+=head2 Description
 
 The JavaScript entry in the FDF dictionary holds a JavaScript dictionary containing JavaScript scripts that
 shall be defined globally at the document level, rather than associated with individual fields. The dictionary may
 contain scripts defining JavaScript functions for use by other scripts in the document, as well as scripts that
 are executed immediately before and after the FDF file is imported.
 
-=head1 METHODS
+=head2 Methods
 =end pod
 
 use PDF::COS::Tie::Hash;

@@ -1,15 +1,13 @@
 use PDF::COS::Tie::Hash;
 
 =begin pod
-=head1 NAME
+=head1 role FDF::Annot
 
-FDF::Annot
-
-=head1 DESCRIPTION
+=head2 Description
 
 Annotation dictionaries in an FDF file are of an appropriate L<PDF::Annot> subclass (e.g. L<PDF::Annot::Widget>). They also mix-in this role (FDF::Annot) which includes a `Page` entry indicating the page of the source document to which the annotation is attached.
 
-=head1 METHODS
+=head2 Methods
 =end pod
 
 role FDF::Annot

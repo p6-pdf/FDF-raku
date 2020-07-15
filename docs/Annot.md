@@ -2,18 +2,16 @@
  / [FDF](https://pdf-raku.github.io/FDF-raku)
  :: [Annot](https://pdf-raku.github.io/FDF-raku/Annot)
 
-NAME
-====
+role FDF::Annot
+===============
 
-FDF::Annot
-
-DESCRIPTION
-===========
+Description
+-----------
 
 Annotation dictionaries in an FDF file are of an appropriate [PDF::Annot](https://pdf-raku.github.io/PDF-Class-raku) subclass (e.g. [PDF::Annot::Widget](https://pdf-raku.github.io/PDF-Class-raku)). They also mix-in this role (FDF::Annot) which includes a `Page` entry indicating the page of the source document to which the annotation is attached.
 
-METHODS
-=======
+Methods
+-------
 
 class UInt $.Page
 -----------------

@@ -2,18 +2,16 @@
  / [FDF](https://pdf-raku.github.io/FDF-raku)
  :: [Page](https://pdf-raku.github.io/FDF-raku/Page)
 
-NAME
-====
+role FDF::Page
+==============
 
-FDF::Page
-
-DESCRIPTION
-===========
+Description
+-----------
 
 The FDF Page dictionary describes a new page that is added to the target document.
 
-METHODS
-=======
+Methods
+-------
 
 class FDF::Template @.Templates
 -------------------------------

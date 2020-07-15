@@ -4,15 +4,13 @@ use PDF::COS::Tie::Hash;
 
 =begin pod
 
-=head1 NAME
+=head1 role FDF::Template
 
-FDF::Template
-
-=head1 DESCRIPTION
+=head2 Description
 
 An FDF template dictionary contains information describing a named page that serves as a template.
 
-=head1 METHODS
+=head2 Methods
 =end pod
 
 role FDF::Template
