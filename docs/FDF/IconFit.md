@@ -1,6 +1,7 @@
 [[Raku PDF Project]](https://pdf-raku.github.io)
- / [FDF](https://pdf-raku.github.io/FDF-raku)
- :: [IconFit](https://pdf-raku.github.io/FDF-raku/IconFit)
+ / [[FDF Module]](https://pdf-raku.github.io/FDF-raku)
+ / [FDF](https://pdf-raku.github.io/FDF-raku/FDF)
+ :: [IconFit](https://pdf-raku.github.io/FDF-raku/FDF/IconFit)
 
 role FDF::IconFit
 =================

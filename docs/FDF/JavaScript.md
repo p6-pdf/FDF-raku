@@ -1,6 +1,7 @@
 [[Raku PDF Project]](https://pdf-raku.github.io)
- / [FDF](https://pdf-raku.github.io/FDF-raku)
- :: [JavaScript](https://pdf-raku.github.io/FDF-raku/JavaScript)
+ / [[FDF Module]](https://pdf-raku.github.io/FDF-raku)
+ / [FDF](https://pdf-raku.github.io/FDF-raku/FDF)
+ :: [JavaScript](https://pdf-raku.github.io/FDF-raku/FDF/JavaScript)
 
 role FDF::JavaScript
 ====================

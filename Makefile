@@ -15,39 +15,37 @@ loudtest :
 clean :
 	@rm -f docs/*.md
 
-docs/%.md : lib/FDF/%.rakumod
+docs/%.md : lib/%.rakumod
 	raku -I . --doc=Markdown $< \
-	| TRAIL=FDF/$* raku -p -n $(DocLinker) \
+	| TRAIL=$* raku -p -n $(DocLinker) \
         > $@
 
-docs/index.md : README.md lib/FDF.rakumod
-	(cat README.md; echo; echo '<hr/>'; echo; raku -I . --doc=Markdown lib/FDF.rakumod) \
-	| TRAIL=FDF raku -p -n $(DocLinker) \
-        > $@
+docs/index.md : README.md
+	cp $< $@
 
 $(DocLinker) :
 	(cd .. && git clone $(DocRepo) $(DocProj))
 
-doc : $(DocLinker) docs/index.md docs/Annot.md docs/Catalog.md docs/Dict.md docs/Field.md docs/IconFit.md\
- docs/JavaScript.md docs/NamedPageRef.md docs/Page.md docs/Template.md
+doc : $(DocLinker) docs/index.md docs/FDF.md docs/FDF/Annot.md docs/FDF/Catalog.md docs/FDF/Dict.md docs/FDF/Field.md docs/FDF/IconFit.md\
+ docs/FDF/JavaScript.md docs/FDF/NamedPageRef.md docs/FDF/Page.md docs/FDF/Template.md
 
-docs/index.md : lib/FDF.rakumod
+docs/FDF.md : lib/FDF.rakumod
 
-docs/Annot.md : lib/FDF/Annot.rakumod
+docs/FDF/Annot.md : lib/FDF/Annot.rakumod
 
-docs/Catalog.md : lib/FDF/Catalog.rakumod
+docs/FDF/Catalog.md : lib/FDF/Catalog.rakumod
 
-docs/Dict.md : lib/FDF/Dict.rakumod
+docs/FDF/Dict.md : lib/FDF/Dict.rakumod
 
-docs/Field.md : lib/FDF/Field.rakumod
+docs/FDF/Field.md : lib/FDF/Field.rakumod
 
-docs/IconFit.md : lib/FDF/IconFit.rakumod
+docs/FDF/IconFit.md : lib/FDF/IconFit.rakumod
 
-docs/JavaScript.md : lib/FDF/JavaScript.rakumod
+docs/FDF/JavaScript.md : lib/FDF/JavaScript.rakumod
 
-docs/NamedPageRef.md : lib/FDF/NamedPageRef.rakumod
+docs/FDF/NamedPageRef.md : lib/FDF/NamedPageRef.rakumod
 
-docs/Page.md : lib/FDF/Page.rakumod
+docs/FDF/Page.md : lib/FDF/Page.rakumod
 
-docs/Template.md : lib/FDF/Template.rakumod
+docs/FDF/Template.md : lib/FDF/Template.rakumod
 

@@ -1,6 +1,7 @@
 [[Raku PDF Project]](https://pdf-raku.github.io)
- / [FDF](https://pdf-raku.github.io/FDF-raku)
- :: [Field](https://pdf-raku.github.io/FDF-raku/Field)
+ / [[FDF Module]](https://pdf-raku.github.io/FDF-raku)
+ / [FDF](https://pdf-raku.github.io/FDF-raku/FDF)
+ :: [Field](https://pdf-raku.github.io/FDF-raku/FDF/Field)
 
 role FDF::Field
 ===============

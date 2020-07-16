@@ -1,6 +1,7 @@
 [[Raku PDF Project]](https://pdf-raku.github.io)
- / [FDF](https://pdf-raku.github.io/FDF-raku)
- :: [Dict](https://pdf-raku.github.io/FDF-raku/Dict)
+ / [[FDF Module]](https://pdf-raku.github.io/FDF-raku)
+ / [FDF](https://pdf-raku.github.io/FDF-raku/FDF)
+ :: [Dict](https://pdf-raku.github.io/FDF-raku/FDF/Dict)
 
 Role FDF::Dict
 ==============

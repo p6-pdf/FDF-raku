@@ -1,6 +1,7 @@
 [[Raku PDF Project]](https://pdf-raku.github.io)
- / [FDF](https://pdf-raku.github.io/FDF-raku)
- :: [Template](https://pdf-raku.github.io/FDF-raku/Template)
+ / [[FDF Module]](https://pdf-raku.github.io/FDF-raku)
+ / [FDF](https://pdf-raku.github.io/FDF-raku/FDF)
+ :: [Template](https://pdf-raku.github.io/FDF-raku/FDF/Template)
 
 role FDF::Template
 ==================

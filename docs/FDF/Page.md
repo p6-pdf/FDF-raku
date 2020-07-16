@@ -1,6 +1,7 @@
 [[Raku PDF Project]](https://pdf-raku.github.io)
- / [FDF](https://pdf-raku.github.io/FDF-raku)
- :: [Page](https://pdf-raku.github.io/FDF-raku/Page)
+ / [[FDF Module]](https://pdf-raku.github.io/FDF-raku)
+ / [FDF](https://pdf-raku.github.io/FDF-raku/FDF)
+ :: [Page](https://pdf-raku.github.io/FDF-raku/FDF/Page)
 
 role FDF::Page
 ==============

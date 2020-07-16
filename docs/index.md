@@ -1,5 +1,5 @@
 [[Raku PDF Project]](https://pdf-raku.github.io)
- / [FDF](https://pdf-raku.github.io/FDF-raku)
+ / [[FDF Module]](https://pdf-raku.github.io/FDF-raku)
 
 FDF-raku
 ========
@@ -10,16 +10,16 @@ files, including PDF export and import.
 Classes/Roles in this Distribution
 -------
 
-- [FDF](https://pdf-raku.github.io/FDF-raku) - FDF file
-- [FDF::Annot](https://pdf-raku.github.io/FDF-raku/Annot) - FDF Annotations
-- [FDF::Catalog](https://pdf-raku.github.io/FDF-raku/Catalog) - FDF Catalog
-- [FDF::Dict](https://pdf-raku.github.io/FDF-raku/Dict) - FDF Main Dictionary
-- [FDF::Field](https://pdf-raku.github.io/FDF-raku/Field) - FDF Fields
-- [FDF::IconFit](https://pdf-raku.github.io/FDF-raku/IconFit) - FDF IconFits
-- [FDF::JavaScript](https://pdf-raku.github.io/FDF-raku/JavaScript) - FDF JavaScripts
-- [FDF::NamedPageRef](https://pdf-raku.github.io/FDF-raku/NamedPageRef) - FDF Named Page References
-- [FDF::Page](https://pdf-raku.github.io/FDF-raku/Page) - FDF Pages to be added
-- [FDF::Template](https://pdf-raku.github.io/FDF-raku/Template) - FDF Page Templates
+- [FDF](https://pdf-raku.github.io/FDF-raku/FDF) - FDF file
+- [FDF::Annot](https://pdf-raku.github.io/FDF-raku/FDF/Annot) - FDF Annotations
+- [FDF::Catalog](https://pdf-raku.github.io/FDF-raku/FDF/Catalog) - FDF Catalog
+- [FDF::Dict](https://pdf-raku.github.io/FDF-raku/FDF/Dict) - FDF Main Dictionary
+- [FDF::Field](https://pdf-raku.github.io/FDF-raku/FDF/Field) - FDF Fields
+- [FDF::IconFit](https://pdf-raku.github.io/FDF-raku/FDF/IconFit) - FDF IconFits
+- [FDF::JavaScript](https://pdf-raku.github.io/FDF-raku/FDF/JavaScript) - FDF JavaScripts
+- [FDF::NamedPageRef](https://pdf-raku.github.io/FDF-raku/FDF/NamedPageRef) - FDF Named Page References
+- [FDF::Page](https://pdf-raku.github.io/FDF-raku/FDF/Page) - FDF Pages to be added
+- [FDF::Template](https://pdf-raku.github.io/FDF-raku/FDF/Template) - FDF Page Templates
 
 
 Synopsis
@@ -75,26 +75,3 @@ Not yet handled:
 - Form signing and signature manipulation
 - Import/export of annotations and pages
 - Custom encodings (`/Encoding` entry in the FDF dictionary)
-
-<hr/>
-
-class FDF (Form Data Format)
-============================
-
-Description
------------
-
-The trailer of an FDF file enables a reader to find significant objects quickly within the body of the file. The only required key is Root, whose value is an indirect reference to the file’s catalogue dictionary (see Table 242). The trailer may optionally contain additional entries for objects that are referenced from within the catalogue.
-
-Methods
--------
-
-This class inherits from [PDF](https://pdf-raku.github.io/PDF-raku) and has most its methods available, including: `new`, `open`, `save-as`, `update`, `Str` and `Blob`.
-
-Note that `encrypt` is not applicable to FDF files.
-
-class FDF::Catalog $.Root (catalog)
------------------------------------
-
-(Required; shall be an indirect reference) The Catalog object for this FDF file
-

@@ -1,6 +1,7 @@
 [[Raku PDF Project]](https://pdf-raku.github.io)
- / [FDF](https://pdf-raku.github.io/FDF-raku)
- :: [NamedPageRef](https://pdf-raku.github.io/FDF-raku/NamedPageRef)
+ / [[FDF Module]](https://pdf-raku.github.io/FDF-raku)
+ / [FDF](https://pdf-raku.github.io/FDF-raku/FDF)
+ :: [NamedPageRef](https://pdf-raku.github.io/FDF-raku/FDF/NamedPageRef)
 
 role FDF::NamedPageRef
 ======================
