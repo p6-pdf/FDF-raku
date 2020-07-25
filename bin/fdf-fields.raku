@@ -76,7 +76,7 @@ multi sub MAIN(
     my PDF::Class $pdf .= open($pdf-file, :$password);
     my FDF $fdf .= open: $fdf-file;
 
-    $fdf.import-to: $pdf, :$appearances, :$actions, :$drm;
+    $fdf.merge: :to($pdf), :$appearances, :$actions, :$drm;
 
     with $save-as {
         $pdf.save-as( $_ );
@@ -99,7 +99,7 @@ multi sub MAIN(
     (my PDF-File $pdf-file, my FDF-File $fdf-file) = get-pdf-fdf($file, $file2);
     my PDF::Class $pdf .= open($pdf-file, :$password);
     my FDF $fdf .= new();
-    $fdf.export-from: $pdf, :$appearances, :$actions, :%fill;
+    $fdf.merge: :from($pdf), :$appearances, :$actions, :%fill;
 
     note "saving $fdf-file...";
     $fdf.save-as: $fdf-file;
@@ -120,8 +120,8 @@ fdf-fields.raku - Manipulate FDF fields
  Options
    --list infile.[pdf|fdf]                               % list fields and current values
    --import infile.fdf [outfile.pdf]                     % import fields from an fdf file
-     --/actions                                          % - don't import JavaScript actio ns
-     --/appearances                                      % - don;t import appearance dictionaries
+     --/actions                                          % - don't import JavaScript actions
+     --/appearances                                      % - don't import appearance dictionaries
    --export outfile.fdf [infile.pdf] :key=new-value ...  % export PDF fields to an FDF
 
  General Options:
