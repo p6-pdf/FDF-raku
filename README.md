@@ -29,33 +29,49 @@ Synopsis
 ```
 use PDF::Class;
 use FDF;
-my PDF::Class $pdf .= open: "PDF-With-Fields.pdf";
+my PDF::Class $pdf .= open: "MyDoc.pdf";
 my FDF $fdf .= new;
 
 # fill the email field, overriding PDF value
 my %fill = :email<david.warring@gmail.com>;
 
-# populate form data from the PDF
-$fdf.merge: :from($pdf), :%fill;
+# Combined import and filling
+$fdf.import: $pdf, :%fill;
+# -OR- import then fill
+$fdf.import: $pdf;
+$fdf.import: :%fill;
 
 note "saving fields :-"
 for $fdf.field-hash.sort {
     note " - {.key}: {.value.perl}";
 }
 
-$fdf.save-as: "PDF-With-Fields.fdf";
+$fdf.save-as: "MyDoc.fdf";
+
+
+### List field values in an FDF file
+```
+use FDF;
+use FDF::Field;
+my FDF $fdf .= open: "MyDoc.fdf";
+
+my FDF::Fields @fields = $fdf.fields;
+for @fields {
+    say .key ~ ': ' ~ .value.raku;
+}
+
 ```
 
 
-### Import field data from an FDF to a PDF
+### Export field data from an FDF to a PDF
 ```
 use PDF::Class;
 use FDF;
-my PDF::Class $pdf .= open: "PDF-With-Fields.pdf";
-my FDF $fdf .= open: "PDF-With-Fields.fdf";
+my PDF::Class $pdf .= open: "MyDoc.pdf";
+my FDF $fdf .= open: "MyDoc.fdf";
 
 # populate form data from the PDF
-$fdf.merge: :to($pdf);
+$fdf.export: $pdf;
 
 # save updated fields
 $pdf.update;

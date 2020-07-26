@@ -47,12 +47,24 @@ class FDF
 
     method encrypt { fail "encryption is not applicable to FDF files"; }
 
+    #| Return a list of fields
     method fields {
         do with self.Root.FDF { .fields } // [];
     }
+    =begin code :lang<raku>
+        use FDF;
+        use FDF::Field;
+        my FDF $fdf .= open("MyDoc.pdf");
+        my FDF::Field @fields = $fdf.fields;
+    =end code
+
+    #| Returns a Hash of fields
     method fields-hash(|c) {
         do with self.Root.FDF { .fields-hash(|c) } // %();
     }
+    =begin code :lang<raku>
+        my FDF::Field %fields = $fdf.fields-hash;
+    =end code
 
     method open(|c) {
         # make sure it really is an FDF
@@ -70,7 +82,9 @@ class FDF
 	PDF::COS.coerce(self<Root>, FDF::Catalog);
     }
 
-    multi method merge(PDF::Class:D :to($pdf)!, Bool :$drm = True, |c) {
+    multi method export(
+        PDF::Class:D $pdf,
+        Bool :$drm = True --> Hash) {
         my %pdf-fields = $pdf.fields-hash;
 
 	unless %pdf-fields {
@@ -82,15 +96,15 @@ class FDF
             die "This PDF forbids modification\n"
 	        unless $pdf.permitted( PermissionsFlag::Modify );
         }
-        my @ignored;
 
+        my @ignored;
         my @fdf-fields = self.fields;
 
         for @fdf-fields -> $fdf-field {
 	    my $key = $fdf-field.T;
 
 	    if %pdf-fields{$key}:exists {
-                $fdf-field.merge: to => %pdf-fields{$key}, |c;
+                $fdf-field.export(%pdf-fields{$key});
 	    }
 	    else {
 	        @ignored.push: $key;
@@ -98,21 +112,23 @@ class FDF
         }
         warn "unknown import fields were ignored: @ignored[]"
             if @ignored;
+
+        %pdf-fields;
     }
-    multi method merge(Bool :to($) where .so, |c) {
+
+    multi method export(*%o) {
         my Str $pdf-file = .file-name
             with self.Root.FDF;
         with $pdf-file {
-            my PDF::Class $to .= open($_);
-            self.merge: :$to, |c;
+            my PDF::Class $pdf .= open($_);
+            self.export: $pdf, |%o;
         }
         else {
             die "FDF does not contain a source/target PDF";
         }
-    
     }
 
-    multi method merge(PDF::Class:D :from($pdf)!, :%fill, |c) {
+    multi method import(PDF::Class:D $pdf, :%fill, *%o) {
         my $fdf-dict = self.Root.FDF;
         $fdf-dict.F = .file-name
            with $pdf.reader;
@@ -120,7 +136,7 @@ class FDF
         my @pdf-fields = $pdf.fields;
 
         unless @pdf-fields {
-            my $pdf-file = do with $pdf.reader { .filename } // 'PDF';
+            my $pdf-file = do with $pdf.reader { .file-name } // 'PDF';
             die "$pdf-file has no AcroForm fields"
         }
 
@@ -131,7 +147,7 @@ class FDF
             temp $pdf-field.V = $_
                 with %fill{$pdf-field.T}:delete;
             my $fdf-field = $fdf-fields.push: {};
-            $fdf-field.merge: from => $pdf-field, |c;
+            $fdf-field.import($pdf-field, |%o);
         }
 
         if %fill {
@@ -140,17 +156,26 @@ class FDF
 
         $fdf-fields;
     }
-    multi method merge(Bool :from($) where .so, |c) {
-        my Str $pdf-file = .file-name
+
+    multi method import(*%o) {
+        my Str $pdf-file = .file
             with self.Root.FDF;
         with $pdf-file {
-            my PDF::Class $from .= open($_);
-            self.merge: :$from, |c;
+            my PDF::Class $pdf .= open($_);
+            self.import: $pdf, |%o;
         }
         else {
             die "FDF does not contain a source/target PDF";
         }
     
+    }
+
+    multi method merge(PDF::Class:D :$from!, *%o) {
+        self.import($from, |%o);
+    }
+
+    multi method merge(PDF::Class:D :$to!, *%o) {
+        self.export($to, |%o);
     }
 
 }

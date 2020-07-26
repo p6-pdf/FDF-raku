@@ -34,13 +34,28 @@ role FDF::Dict
     #| (Optional) An array of FDF field dictionaries describing the root fields (those with no ancestors in the field hierarchy) to be exported or imported. This entry and the Pages entry may not both be present.
     has FDF::Field @.Fields is entry;
 
-    method fields {
+    #| return an array of all fields
+    method fields(--> Array) {
 	my @fields;
         my $flds = self.Fields;
 	for $flds.keys {
 	    @fields.append( $flds[$_].fields )
 	}
 	@fields;
+    }
+
+    #| return fields mapped to a hash. Default key is $.T field entries
+    method fields-hash( Array $fields-arr = self.fields,
+                        :$key where 'T'|'TU'|'TR' = 'T'
+			  --> Hash) {
+	my %fields;
+
+	for $fields-arr.list -> $field {
+            %fields{ $_ } = $field
+                with $field{$key};
+	}
+
+	%fields;
     }
 
     #| (Optional) A status string to be displayed indicating the result of an action, typically a submit-form action. The string is encoded with PDFDocEncoding. 

@@ -3,6 +3,73 @@
  / [FDF](https://pdf-raku.github.io/FDF-raku/FDF)
  :: [Field](https://pdf-raku.github.io/FDF-raku/FDF/Field)
 
+NAME
+====
+
+Pod::To::Markdown - Render Pod as Markdown
+
+SYNOPSIS
+========
+
+From command line:
+
+    $ perl6 --doc=Markdown lib/To/Class.pm
+
+From Perl6:
+
+```perl6
+use Pod::To::Markdown;
+
+=NAME
+foobar.pl
+
+=SYNOPSIS
+    foobar.pl <options> files ...
+
+print pod2markdown($=pod);
+```
+
+EXPORTS
+=======
+
+    class Pod::To::Markdown
+    sub pod2markdown
+
+DESCRIPTION
+===========
+
+
+
+### method render
+
+```perl6
+method render(
+    $pod,
+    Bool :$no-fenced-codeblocks
+) returns Str
+```
+
+Render Pod as Markdown
+
+To render without fenced codeblocks (```` ``` ````), as some markdown engines don't support this, use the :no-fenced-codeblocks option. If you want to have code show up as ```` ```perl6```` to enable syntax highlighting on certain markdown renderers, use:
+
+    =begin code :lang<perl6>
+
+### sub pod2markdown
+
+```perl6
+sub pod2markdown(
+    $pod,
+    Bool :$no-fenced-codeblocks
+) returns Str
+```
+
+Render Pod as Markdown, see .render()
+
+LICENSE
+=======
+
+This is free software; you can redistribute it and/or modify it under the terms of The [Artistic License 2.0](http://www.perlfoundation.org/artistic_license_2_0).
 role FDF::Field
 ===============
 
@@ -97,23 +164,23 @@ class PDF::Class::Defs::TextOrStream $.RV (rich-text)
 
 (Optional; PDF 1.5) A rich text string
 
-### method merge
+### method export
 
 ```perl6
-method merge(
-    PDF::Field:D :to($fld)!,
+method export(
+    PDF::Field:D $fld,
     Bool :$appearances = Bool::True,
     Bool :$actions = Bool::True
 ) returns Mu
 ```
 
-import values into a PDF field from this FDF field
+export values into a PDF field from this FDF field
 
-### method merge
+### method import
 
 ```perl6
-method merge(
-    PDF::Field:D :from($fld)!,
+method import(
+    PDF::Field:D $fld,
     Bool :$appearances,
     Bool :$actions
 ) returns Mu
