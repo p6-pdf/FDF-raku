@@ -135,65 +135,65 @@ role FDF::Field
     }
 
     #| export values into a PDF field from this FDF field
-    method export(PDF::Field:D $fld, Bool :$appearances = True, Bool :$actions = True) {
-        set-key(self, $fld);
+    method export(PDF::Field:D :$to!, Bool :$appearances = True, Bool :$actions = True) {
+        set-key(self, $to);
 
-        $fld.V = $_ with self.V;
-        $fld.RV = $_ with self.RV;
+        $to.V = $_ with self.V;
+        $to.RV = $_ with self.RV;
 
         with self.F {
-            $fld<F> = $_;
+            $to<F> = $_;
         }
         else {
-            given ($fld<F> //= 0) -> $f is rw {
+            given ($to<F> //= 0) -> $f is rw {
                 $f +|= $_ with self.SetF;
                 $f -= ($f +& $_) with self.ClrF;
             }
         }
 
-        with $fld.Ff {
-            $fld<Ff> = $_;
+        with $to.Ff {
+            $to<Ff> = $_;
         }
         else {
-            given $fld<Ff> //= 0 -> $f is rw {
+            given $to<Ff> //= 0 -> $f is rw {
                 $f +|= $_ with self.SetFf;
                 $f -= ($f +& $_) with self.ClrFf;
             }
         }
 
         if $appearances {
-            $fld.AP = $_ with self.AP;
+            $to.AP = $_ with self.AP;
             warn "todo apply icon-fit (/IF)" with self.IF;
         }
 
         if $actions {
-            $fld.A = $_ with self.A;
-            $fld.AA = $_ with self.AA;
+            $to.A = $_ with self.A;
+            $to.AA = $_ with self.AA;
         }
     }
 
     #| Populate this FDF field from the PDF field
-    multi method import(PDF::Field:D $fld, Bool :$appearances, Bool :$actions) {
-        set-key($fld, self);
+    multi method import(PDF::Field:D :$from!, Bool :$appearances, Bool :$actions) {
+        set-key($from, self);
 
-        self.V = $fld.V // '';
-        self.RV = $_ with $fld.RV;
+        self.V = $from.V // '';
+        self.RV = $_ with $from.RV;
 
         unless self.SetF || self.ClrF {
-            self.F = $_ with $fld<F>;
+            self.F = $_ with $from<F>;
         }
 
         unless self.SetFf || self.ClrFf {
-            self.Ff = $_ with $fld.Ff;
+            self.Ff = $_ with $from.Ff;
         }
 
         if $appearances {
-            self.AP = $_ with $fld.AP;
+            self.AP = $_ with $from.AP;
         }
 
         if $$actions {
-            self.A  = $_ with $fld.A;
-            self.AA = $_ with $fld.AA;
+            self.A  = $_ with $from.A;
+            self.AA = $_ with $from.AA;
         }
     }
 

@@ -25,7 +25,7 @@ lives-ok { $pdf-field.check }, 'PDF::Field.check()';
 lives-ok { $fdf-field.check }, 'FDF::Field.check()';
 
 
-lives-ok {$fdf-field.export: $pdf-field;}
+lives-ok {$fdf-field.export: to => $pdf-field;}
 
 for <T V> {
     is $pdf-field{$_}, $fdf-field."$_"(), "import of $_";

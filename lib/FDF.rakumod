@@ -82,19 +82,19 @@ class FDF
 	PDF::COS.coerce(self<Root>, FDF::Catalog);
     }
 
-    multi method export(
-        PDF::Class:D $pdf,
-        Bool :$drm = True --> Hash) {
-        my %pdf-fields = $pdf.fields-hash;
+    multi method export(FDF:D: PDF::Class:D :$to!,
+                  Bool :$drm = True,
+                  :%fill --> Array) {
+        my %to-fields = $to.fields-hash;
 
-	unless %pdf-fields {
-            my $pdf-file = do with $pdf.reader { .filename } // 'PDF';
-            die "$pdf-file has no fields defined";
+	unless %to-fields {
+            my $to-file = do with $to.reader { .filename } // 'PDF';
+            die "$to-file has no fields defined";
         }
 
         if $drm {
             die "This PDF forbids modification\n"
-	        unless $pdf.permitted( PermissionsFlag::Modify );
+	        unless $to.permitted( PermissionsFlag::Modify );
         }
 
         my @ignored;
@@ -103,51 +103,63 @@ class FDF
         for @fdf-fields -> $fdf-field {
 	    my $key = $fdf-field.T;
 
-	    if %pdf-fields{$key}:exists {
-                $fdf-field.export(%pdf-fields{$key});
+	    with %to-fields{$key} -> $to-field {
+                $fdf-field.export(to => $to-field);
+                $to-field.V = $_
+                    with %fill{$key}:delete;
 	    }
 	    else {
 	        @ignored.push: $key;
 	    }
         }
+
         warn "unknown import fields were ignored: @ignored[]"
             if @ignored;
 
-        %pdf-fields;
+        warn "ignoring edits on unknown fields: {%fill.keys.sort.join: ','}"
+            if %fill;
+
+        @fdf-fields;
     }
 
-    multi method export(*%o) {
-        my Str $pdf-file = .file-name
+    multi method export(FDF:D: *%o) {
+        my Str $to-file = .file-name
             with self.Root.FDF;
-        with $pdf-file {
-            my PDF::Class $pdf .= open($_);
-            self.export: $pdf, |%o;
+        with $to-file {
+            my PDF::Class $to .= open($_);
+            self.export: :$to, |%o;
         }
         else {
             die "FDF does not contain a source/target PDF";
         }
     }
 
-    multi method import(PDF::Class:D $pdf, :%fill, *%o) {
+    method create(PDF::Class:D :$from!, *%o) {
+        my $fdf = self.new;
+        $fdf.import( :$from, |%o);
+        $fdf;
+    }
+
+    multi method import(FDF:D: PDF::Class:D :$from!, :%fill, *%o) {
         my $fdf-dict = self.Root.FDF;
         $fdf-dict.F = .file-name
-           with $pdf.reader;
+           with $from.reader;
 
-        my @pdf-fields = $pdf.fields;
+        my @pdf-fields = $from.fields;
 
         unless @pdf-fields {
-            my $pdf-file = do with $pdf.reader { .file-name } // 'PDF';
-            die "$pdf-file has no AcroForm fields"
+            my $from-file = do with $from.reader { .file-name } // 'PDF';
+            die "$from-file has no AcroForm fields"
         }
 
         my $fdf-fields = $fdf-dict.Fields //= [];
 
         for 0..^ +@pdf-fields {
-            my $pdf-field = @pdf-fields[$_];
-            temp $pdf-field.V = $_
-                with %fill{$pdf-field.T}:delete;
+            my $from-field = @pdf-fields[$_];
+            temp $from-field.V = $_
+                with %fill{$from-field.T}:delete;
             my $fdf-field = $fdf-fields.push: {};
-            $fdf-field.import($pdf-field, |%o);
+            $fdf-field.import(from => $from-field, |%o);
         }
 
         if %fill {
@@ -158,11 +170,11 @@ class FDF
     }
 
     multi method import(*%o) {
-        my Str $pdf-file = .file
+        my Str $from-file = .file
             with self.Root.FDF;
-        with $pdf-file {
-            my PDF::Class $pdf .= open($_);
-            self.import: $pdf, |%o;
+        with $from-file {
+            my PDF::Class $from .= open($_);
+            self.import: :$from, |%o;
         }
         else {
             die "FDF does not contain a source/target PDF";
@@ -171,11 +183,11 @@ class FDF
     }
 
     multi method merge(PDF::Class:D :$from!, *%o) {
-        self.import($from, |%o);
+        self.import(:$from, |%o);
     }
 
     multi method merge(PDF::Class:D :$to!, *%o) {
-        self.export($to, |%o);
+        self.export(:$to, |%o);
     }
 
 }

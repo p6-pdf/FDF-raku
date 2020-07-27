@@ -29,16 +29,16 @@ Synopsis
 ```
 use PDF::Class;
 use FDF;
-my PDF::Class $pdf .= open: "MyDoc.pdf";
+my PDF::Class $from .= open: "MyDoc.pdf";
 my FDF $fdf .= new;
 
 # fill the email field, overriding PDF value
 my %fill = :email<david.warring@gmail.com>;
 
 # Combined import and filling
-$fdf.import: $pdf, :%fill;
+$fdf.import: :$from, :%fill;
 # -OR- import then fill
-$fdf.import: $pdf;
+$fdf.import: :$from;
 $fdf.import: :%fill;
 
 note "saving fields :-"
@@ -67,14 +67,14 @@ for @fields {
 ```
 use PDF::Class;
 use FDF;
-my PDF::Class $pdf .= open: "MyDoc.pdf";
+my PDF::Class $to .= open: "MyDoc.pdf";
 my FDF $fdf .= open: "MyDoc.fdf";
 
 # populate form data from the PDF
-$fdf.export: $pdf;
+$fdf.export: :$to;
 
 # save updated fields
-$pdf.update;
+$to.update;
 
 ```
 

@@ -168,7 +168,7 @@ class PDF::Class::Defs::TextOrStream $.RV (rich-text)
 
 ```perl6
 method export(
-    PDF::Field:D $fld,
+    PDF::Field:D :$to!,
     Bool :$appearances = Bool::True,
     Bool :$actions = Bool::True
 ) returns Mu
@@ -180,7 +180,7 @@ export values into a PDF field from this FDF field
 
 ```perl6
 method import(
-    PDF::Field:D $fld,
+    PDF::Field:D :$from!,
     Bool :$appearances,
     Bool :$actions
 ) returns Mu
