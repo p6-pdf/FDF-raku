@@ -1,34 +1,31 @@
-use v6;
-
-=begin pod
-=head1 class FDF (Form Data Format)
-
-=head2 Description
-
-The trailer of an FDF file enables a reader to find significant objects quickly within the body of the file.  The
-only required key is Root, whose value is an indirect reference to the file’s catalogue dictionary (see
-Table 242). The trailer may optionally contain additional entries for objects that are referenced from within the
-catalogue.
-
-=head2 Methods
-
-This class inherits from L<PDF> and has most its methods available, including: `new`, `open`, `save-as`, `update`, `Str` and `Blob`.
-
-Note that `encrypt` is not applicable to FDF files.
-
-=end pod
-
 use PDF;
-use PDF::Class:v<0.4.4+>;
-use PDF::COS::Type::Encrypt :PermissionsFlag;
 
+#| Entry point into an FDF document
 class FDF
     is PDF {
 
     # See [PDF 32000 Table  241 - Entry in the FDF trailer dictionary]
-    use PDF::COS::Tie;
+    =begin pod
+    =head2 Description
+
+    The trailer of an FDF file enables a reader to find significant objects quickly within the body of the file.  The
+    only required key is Root, whose value is an indirect reference to the file’s catalogue dictionary (see
+    Table 242). The trailer may optionally contain additional entries for objects that are referenced from within the
+    catalogue.
+
+    =head2 Methods
+
+    This class inherits from L<PDF> and has most its methods available, including: `new`, `open`, `save-as`, `update`, `Str` and `Blob`.
+
+    Note that `encrypt` is not applicable to FDF files.
+
+    =end pod
+
+    use PDF::Class:v<0.4.4+>;
     use FDF::Catalog;
     use PDF::COS;
+    use PDF::COS::Tie;
+    use PDF::COS::Type::Encrypt :PermissionsFlag;
 
     #| (Required; shall be an indirect reference) The Catalog object for this FDF file
     has FDF::Catalog $.Root is entry(:required, :indirect, :alias<catalog>);
