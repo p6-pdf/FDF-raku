@@ -7,6 +7,7 @@
     "PDF"
   ],
   "description": "Classes for FDF (Forms Data Definition)",
+  "license": "Artistic-2.0",
   "name": "FDF",
   "perl": "6",
   "provides": {
@@ -22,5 +23,8 @@
     "FDF::Template": "lib/FDF/Template.rakumod"
   },
   "source-url": "git://github.com/pdf-raku/FDF-raku.git",
-  "version": "0.0.1"
+  "tags": [
+      "pdf", "fdf"
+  ],
+  "version": "0.0.2"
 }

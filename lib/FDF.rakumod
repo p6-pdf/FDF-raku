@@ -1,7 +1,7 @@
 use PDF;
 
 #| Entry point into an FDF document
-class FDF
+class FDF:ver<0.0.2>
     is PDF {
 
     # See [PDF 32000 Table  241 - Entry in the FDF trailer dictionary]
