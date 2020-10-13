@@ -65,7 +65,7 @@ class FDF:ver<0.0.2>
 
     method open(|c) {
         # make sure it really is an FDF
-	callwith( :type<FDF>, |c);
+	nextwith( :$.type, |c);
     }
 
     # Save back to the original file. Note that incremental update is not applicable to FDF

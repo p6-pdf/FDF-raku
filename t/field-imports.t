@@ -14,8 +14,8 @@ my %pdf-dict =
  :Ff(123),
 ;
 
-my PDF::Field $pdf-field .= coerce: %pdf-dict;
-my FDF::Field $fdf-field .= coerce: { } ;
+my PDF::Field $pdf-field .= coerce-field: %pdf-dict;
+my FDF::Field $fdf-field .= coerce-field: { :T<surname-fld> } ;
 
 does-ok $fdf-field, FDF::Field;
 does-ok $pdf-field, PDF::Field::Text;

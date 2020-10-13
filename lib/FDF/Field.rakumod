@@ -26,10 +26,12 @@ role FDF::Field
     use PDF::COS::Name;
     use PDF::COS::Dict;
     use PDF::COS::Stream;
+    use PDF::COS::TextString;
     # PDF::Class
     use PDF::Class::Defs :TextOrStream;
     use PDF::Annot;
     use PDF::Field;
+    use PDF::Field::Choice :FieldOptions, :&coerce-field-opts;
     use PDF::Field::Button;
 
     my subset FormLike of PDF::COS::Stream where .<Subtype> ~~ 'Form'; # autoloaded PDF::XObject::Form
@@ -71,7 +73,7 @@ role FDF::Field
     }
 
     #| (Required) The partial field name
-    has Str $.T is entry(:required, :alias<key>);
+    has PDF::COS::TextString $.T is entry(:required, :alias<key>);
 
     #| (Optional) The field’s value, whose format varies depending on the field type
     has $.V is entry(:alias<value>);
@@ -103,6 +105,12 @@ role FDF::Field
     use FDF::IconFit;
     #| (Optional; PDF 1.3; button fields only) An icon fit dictionary (see Table 8.97) specifying how to display a button field’s icon within the annotation rectangle of its widget annotation.
     has FDF::IconFit $.IF is entry(:alias<icon-fit>);
+
+    #| (Required; choice fields only) An array of options that is presented to the user.
+    has FieldOptions @.Opt is entry(:coerce(&coerce-field-opts));
+    =para Each element of the array takes one of two forms:
+        =item A text string representing one of the available options
+        =item A two-element array consisting of a text string representing one of the available options and a default appearance string for constructing the item’s appearance dynamically at viewing time
 
     use PDF::Action;
     #| (Optional) An action to be performed when this field’s widget annotation is activated 
@@ -197,5 +205,6 @@ role FDF::Field
         }
     }
 
-    method coerce(Hash $dict) { PDF::COS.coerce($dict, FDF::Field) }
+    my subset FDF-Field-Like of Hash where .<T> ~~ Str;
+    method coerce-field(FDF-Field-Like $dict) { PDF::COS.coerce($dict, FDF::Field) }
 }

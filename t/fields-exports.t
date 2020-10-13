@@ -16,8 +16,8 @@ my %fdf-dict =
 
 my $FT = 'Tx';
 
-my FDF::Field $fdf-field .= coerce: %fdf-dict;
-my PDF::Field $pdf-field .= coerce: { :$FT, :Ff(1 + 4 + 8), };
+my FDF::Field $fdf-field .= coerce-field: %fdf-dict;
+my PDF::Field $pdf-field .= coerce-field: { :$FT, :Ff(1 + 4 + 8), };
 
 does-ok $fdf-field, FDF::Field;
 does-ok $pdf-field, PDF::Field::Text;
