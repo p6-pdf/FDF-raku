@@ -27,8 +27,8 @@ method fields() returns Array
 
 return ourself, if terminal, any children otherwise
 
-class Str $.T (key)
--------------------
+class PDF::COS::TextString $.T (key)
+------------------------------------
 
 (Required) The partial field name
 
@@ -82,13 +82,24 @@ class FDF::IconFit $.IF (icon-fit)
 
 (Optional; PDF 1.3; button fields only) An icon fit dictionary (see Table 8.97) specifying how to display a button field’s icon within the annotation rectangle of its widget annotation.
 
+class PDF::Field::Choice::FieldOptions @.Opt
+--------------------------------------------
+
+(Required; choice fields only) An array of options that is presented to the user.
+
+Each element of the array takes one of two forms:
+
+  * A text string representing one of the available options
+
+  * A two-element array consisting of a text string representing one of the available options and a default appearance string for constructing the item’s appearance dynamically at viewing time
+
 class PDF::Action $.A (actions)
 -------------------------------
 
 (Optional) An action to be performed when this field’s widget annotation is activated
 
-class PDF::AdditionalActions $.AA (additional-actions)
-------------------------------------------------------
+class FDF::Field::AdditionalActions $.AA (additional-actions)
+-------------------------------------------------------------
 
 (Optional) An additional-actions dictionary defining the field’s behavior in response to various trigger events
 

@@ -15,6 +15,7 @@ Classes/Roles in this Distribution
 - [FDF::Catalog](https://pdf-raku.github.io/FDF-raku/FDF/Catalog) - FDF Catalog
 - [FDF::Dict](https://pdf-raku.github.io/FDF-raku/FDF/Dict) - FDF Main Dictionary
 - [FDF::Field](https://pdf-raku.github.io/FDF-raku/FDF/Field) - FDF Fields
+- [FDF::Field::AdditionalActions](https://pdf-raku.github.io/FDF-raku/FDF/Field/AdditionalActions) - FDF Field Additional Actions
 - [FDF::IconFit](https://pdf-raku.github.io/FDF-raku/FDF/IconFit) - FDF IconFits
 - [FDF::JavaScript](https://pdf-raku.github.io/FDF-raku/FDF/JavaScript) - FDF JavaScripts
 - [FDF::NamedPageRef](https://pdf-raku.github.io/FDF-raku/FDF/NamedPageRef) - FDF Named Page References
