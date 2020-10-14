@@ -115,9 +115,9 @@ role FDF::Field
     use PDF::Action;
     #| (Optional) An action to be performed when this field’s widget annotation is activated 
     has PDF::Action $.A is entry(:alias<actions>);
-    use PDF::AdditionalActions;
+    use FDF::Field::AdditionalActions;
     #| (Optional) An additional-actions dictionary defining the field’s behavior in response to various trigger events
-    has PDF::AdditionalActions $.AA is entry(:alias<additional-actions>);
+    has FDF::Field::AdditionalActions $.AA is entry(:alias<additional-actions>);
 
     #| (Optional; PDF 1.5) A rich text string
     has TextOrStream $.RV is entry(:alias<rich-text>, :coerce(&coerce-text-or-stream));

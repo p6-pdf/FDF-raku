@@ -3,10 +3,9 @@ use Test;
 use FDF;
 use FDF::Dict;
 
-# ensure consistant document ID generation
-srand(123456);
+mkdir ('tmp');
 
-lives-ok { FDF.new.save-as: "t/fdf/create-minimal.fdf" }, "create minimal";
+lives-ok { FDF.new.save-as: "tmp/create-minimal.fdf" }, "create minimal";
 
 my $fdf-doc = FDF.new;
 my FDF::Dict $fdf = $fdf-doc.Root.FDF;
@@ -16,9 +15,9 @@ my $fields = $fdf.Fields //= [];
 
 $fields.push: { :T( :name<Greeting> ), :V<Hello> };
 
-$fdf-doc.save-as: "t/fdf/create-simple.fdf";
+$fdf-doc.save-as: "tmp/create-simple.fdf";
 
-lives-ok {$fdf-doc .= open: "t/fdf/create-simple.fdf"};
+lives-ok {$fdf-doc .= open: "tmp/create-simple.fdf"};
 is +$fdf-doc.catalog.FDF.ID, 2, 'ID generated';
 
 my $id0 = $fdf-doc.catalog.FDF.ID[0];

@@ -16,6 +16,7 @@
     "FDF::Catalog": "lib/FDF/Catalog.rakumod",
     "FDF::Dict": "lib/FDF/Dict.rakumod",
     "FDF::Field": "lib/FDF/Field.rakumod",
+    "FDF::Field::AdditionalActions": "lib/FDF/Field/AdditionalActions.rakumod",
     "FDF::IconFit": "lib/FDF/IconFit.rakumod",
     "FDF::NamedPageRef": "lib/FDF/NamedPageRef.rakumod",
     "FDF::JavaScript": "lib/FDF/JavaScript.rakumod",
