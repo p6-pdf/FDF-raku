@@ -13,7 +13,7 @@ my FDF::Dict $fdf = $fdf-doc.Root.FDF;
 $fdf.F = 't/fdf/create-simple.pdf';
 my $fields = $fdf.Fields //= [];
 
-$fields.push: { :T( :name<Greeting> ), :V<Hello> };
+$fields.push: { :T<Greeting>, :V<Hello> };
 
 $fdf-doc.save-as: "tmp/create-simple.fdf";
 
@@ -25,7 +25,7 @@ my $id1 = $fdf-doc.catalog.FDF.ID[1];
 
 is $id0, $id1, 'created with two identical ID fields';
 $fields = $fdf-doc.Root.FDF.Fields;
-$fields.push: { :T( :name<Recipient> ), :V<World> };
+$fields.push: { :T<Recipient>, :V<World> };
 
 $fdf-doc.update();
 

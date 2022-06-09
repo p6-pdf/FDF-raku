@@ -18,7 +18,7 @@ role FDF::Dict
    # See [PDF 32000 Table 243 – Entries in the FDF dictionary]
 
     use PDF::COS::Tie;
-    use PDF::Filespec :File, :&to-file;
+    use PDF::Filespec :FileRef, :&to-file;
     use PDF::Class::Defs :AnnotLike;
     use FDF::Annot;
     use FDF::Field;
@@ -26,7 +26,7 @@ role FDF::Dict
     use FDF::Page;
 
     #| Optional) The source file or target file: the PDF document file that this FDF file was exported from or is intended to be imported into.
-    has File $.F is entry(:alias<file>, :coerce(&to-file));
+    has FileRef $.F is entry(:alias<file>, :coerce(&to-file));
 
     #| (Optional) An array of two byte strings constituting a file identifier for the source or target file designated by F, taken from the ID entry in the file’s trailer dictionary
     has Str @.ID is entry(:len(2));
@@ -78,7 +78,7 @@ role FDF::Dict
     has Str $.Target is entry;
 
     #| (Optional; PDF 1.4) An array of file specifications representing other FDF files embedded within this one
-    has File @.EmbeddedFDFs is entry(:coerce(&to-file));
+    has FileRef @.EmbeddedFDFs is entry(:coerce(&to-file));
 
     #| (Optional; PDF 1.4) A JavaScript dictionary
     has FDF::JavaScript $.JavaScript is entry;

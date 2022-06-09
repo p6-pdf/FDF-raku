@@ -21,7 +21,7 @@ class FDF::Field @.Kids
 
 ### method fields
 
-```perl6
+```raku
 method fields() returns Array
 ```
 
@@ -110,7 +110,7 @@ class PDF::Class::Defs::TextOrStream $.RV (rich-text)
 
 ### method export
 
-```perl6
+```raku
 method export(
     PDF::Field:D :$to!,
     Bool :$appearances = Bool::True,
@@ -122,7 +122,7 @@ export values into a PDF field from this FDF field
 
 ### method import
 
-```perl6
+```raku
 method import(
     PDF::Field:D :$from!,
     Bool :$appearances,

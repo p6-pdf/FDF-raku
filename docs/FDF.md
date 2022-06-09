@@ -26,7 +26,7 @@ class FDF::Catalog $.Root (catalog)
 
 ### method fields
 
-```perl6
+```raku
 method fields() returns Mu
 ```
 
@@ -41,7 +41,7 @@ Return a list of fields
 
 ### method fields-hash
 
-```perl6
+```raku
 method fields-hash(
     |c
 ) returns Mu

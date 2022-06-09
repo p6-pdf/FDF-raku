@@ -14,8 +14,8 @@ This is the main dictionary describing the contents of an FDF (Forms Data Format
 METHODS
 -------
 
-class PDF::Filespec::File $.F (file)
-------------------------------------
+class PDF::Filespec::FileRef $.F (file)
+---------------------------------------
 
 Optional) The source file or target file: the PDF document file that this FDF file was exported from or is intended to be imported into.
 
@@ -31,7 +31,7 @@ class FDF::Field @.Fields
 
 ### method fields
 
-```perl6
+```raku
 method fields() returns Array
 ```
 
@@ -39,7 +39,7 @@ return an array of all fields
 
 ### method fields-hash
 
-```perl6
+```raku
 method fields-hash(
     Array $fields-arr = Code.new,
     :$key where { ... } = "T"
@@ -73,8 +73,8 @@ class Str $.Target
 
 (Optional; PDF 1.4) The name of a browser frame in which the underlying PDF document is to be opened. This mimics the behavior of the target attribute in HTML < href > tags.
 
-class PDF::Filespec::File @.EmbeddedFDFs
-----------------------------------------
+class PDF::Filespec::FileRef @.EmbeddedFDFs
+-------------------------------------------
 
 (Optional; PDF 1.4) An array of file specifications representing other FDF files embedded within this one
 

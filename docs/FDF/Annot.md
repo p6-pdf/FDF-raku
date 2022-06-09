@@ -21,7 +21,7 @@ class UInt $.Page
 
 ### method page-number
 
-```perl6
+```raku
 method page-number() returns UInt
 ```
 

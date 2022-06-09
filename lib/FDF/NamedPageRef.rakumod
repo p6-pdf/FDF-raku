@@ -21,10 +21,10 @@ role FDF::NamedPageRef
 
     use PDF::COS::Tie;
     use PDF::COS::ByteString;
-    use PDF::Filespec :File, :&to-file;
+    use PDF::Filespec :FileRef, :&to-file;
 
     #| (Required) The name of the referenced page.
     has PDF::COS::ByteString $.Name is entry(:required);
     #| (Optional) The file containing the named page. If this entry is absent, it is assumed that the page resides in the associated PDF file. 
-    has File $.F is entry(:alias<file>, :coerce(&to-file));
+    has FileRef $.F is entry(:alias<file>, :coerce(&to-file));
 }

@@ -19,8 +19,8 @@ class PDF::COS::ByteString $.Name
 
 (Required) The name of the referenced page.
 
-class PDF::Filespec::File $.F (file)
-------------------------------------
+class PDF::Filespec::FileRef $.F (file)
+---------------------------------------
 
 (Optional) The file containing the named page. If this entry is absent, it is assumed that the page resides in the associated PDF file.
 
