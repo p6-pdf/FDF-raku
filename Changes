@@ -1,4 +1,10 @@
+{{$NEXT}}
+
+0.0.3  2022-06-09T15:32:45+12:00
+   - upload to zef ecosystem
+
 0.0.2 - Add license (Artistic)
       - README fixes
       - Add role FDF::Field::AdditionalActions
+
 0.0.1 - Initial Release

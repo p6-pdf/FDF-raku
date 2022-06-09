@@ -3,7 +3,7 @@
   "authors": [
     "David Warring"
   ],
-  "build-depends" : [
+  "build-depends": [
   ],
   "depends": [
     "PDF::Class:ver<0.5.4+>",
@@ -21,14 +21,19 @@
     "FDF::Field": "lib/FDF/Field.rakumod",
     "FDF::Field::AdditionalActions": "lib/FDF/Field/AdditionalActions.rakumod",
     "FDF::IconFit": "lib/FDF/IconFit.rakumod",
-    "FDF::NamedPageRef": "lib/FDF/NamedPageRef.rakumod",
     "FDF::JavaScript": "lib/FDF/JavaScript.rakumod",
+    "FDF::NamedPageRef": "lib/FDF/NamedPageRef.rakumod",
     "FDF::Page": "lib/FDF/Page.rakumod",
     "FDF::Template": "lib/FDF/Template.rakumod"
   },
+  "resources": [
+  ],
   "source-url": "git://github.com/pdf-raku/FDF-raku.git",
   "tags": [
-      "pdf", "fdf"
+    "pdf",
+    "fdf"
   ],
-  "version": "0.0.2"
+  "test-depends": [
+  ],
+  "version": "0.0.3"
 }
