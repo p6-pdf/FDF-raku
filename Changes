@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.0.4  2024-07-17T07:18:20+12:00
    - Perform ISO::32000 (PDF 1.7) and ISO::32000_2 (PDF 2.0) roles.
    - Fixed one typo in FDF::Field entries: $.ApRef -> $.APRef
 

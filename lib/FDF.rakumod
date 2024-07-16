@@ -1,6 +1,6 @@
 
 #| Entry point into an FDF document
-unit class FDF:ver<0.0.3>;
+unit class FDF:ver<0.0.4>;
 
 use PDF;
 also is PDF;

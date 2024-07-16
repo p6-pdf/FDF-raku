@@ -30,12 +30,12 @@
   },
   "resources": [
   ],
-  "source-url": "git://github.com/pdf-raku/FDF-raku.git",
+  "source-url": "https://github.com/pdf-raku/FDF-raku.git",
   "tags": [
     "pdf",
     "fdf"
   ],
   "test-depends": [
   ],
-  "version": "0.0.3"
+  "version": "0.0.4"
 }
