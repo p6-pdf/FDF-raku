@@ -8,6 +8,9 @@ also is PDF;
 use ISO_32000::Table_241-Entry_in_the_FDF_trailer_dictionary;
 also does ISO_32000::Table_241-Entry_in_the_FDF_trailer_dictionary;
 
+use ISO_32000_2::Table_244-Entry_in_the_FDF_trailer_dictionary;
+also does ISO_32000_2::Table_244-Entry_in_the_FDF_trailer_dictionary;
+
 # See [PDF 32000 Table  241 - Entry in the FDF trailer dictionary]
 =begin pod
 =head2 Description

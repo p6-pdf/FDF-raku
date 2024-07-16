@@ -6,6 +6,9 @@ also does PDF::COS::Tie::Hash;
 use ISO_32000::Table_251-Additional_entry_for_annotation_dictionaries_in_an_FDF_file;
 also does ISO_32000::Table_251-Additional_entry_for_annotation_dictionaries_in_an_FDF_file;
 
+use ISO_32000_2::Table_254-Additional_entry_for_annotation_dictionaries_in_an_FDF_file;
+also does ISO_32000_2::Table_254-Additional_entry_for_annotation_dictionaries_in_an_FDF_file;
+
 =begin pod
 =head1 role FDF::Annot
 

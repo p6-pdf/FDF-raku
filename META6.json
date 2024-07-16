@@ -5,9 +5,10 @@
   ],
   "build-depends": [
   ],
-    "depends": [
+  "depends": [
     "PDF::Class:ver<0.5.4+>",
-    "PDF::ISO_32000:ver<0.0.13+>",
+    "PDF::ISO_32000",
+    "PDF::ISO_32000_2",
     "PDF"
   ],
   "description": "Classes for FDF (Forms Data Definition)",

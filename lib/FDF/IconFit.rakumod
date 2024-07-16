@@ -6,6 +6,9 @@ also does PDF::COS::Tie::Hash ;
 use ISO_32000::Table_247-Entries_in_an_icon_fit_dictionary;
 also does ISO_32000::Table_247-Entries_in_an_icon_fit_dictionary;
 
+use ISO_32000_2::Table_250-Entries_in_an_icon_fit_dictionary;
+also does ISO_32000_2::Table_250-Entries_in_an_icon_fit_dictionary;
+
 =begin pod
 =head1 role FDF::IconFit
 

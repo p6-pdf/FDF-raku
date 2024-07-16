@@ -6,6 +6,9 @@ also does PDF::COS::Tie::Hash;
 use ISO_32000::Table_250-Entries_in_an_FDF_named_page_reference_dictionary;
 also does ISO_32000::Table_250-Entries_in_an_FDF_named_page_reference_dictionary;
 
+use ISO_32000_2::Table_253-Entries_in_an_FDF_named_page_reference_dictionary;
+also does ISO_32000_2::Table_253-Entries_in_an_FDF_named_page_reference_dictionary;
+
 =begin pod
 
 =head1 role FDF::NamedPageRef

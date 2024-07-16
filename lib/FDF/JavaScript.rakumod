@@ -6,6 +6,9 @@ also does PDF::COS::Tie::Hash;
 use ISO_32000::Table_245-Entries_in_the_JavaScript_dictionary;
 also does ISO_32000::Table_245-Entries_in_the_JavaScript_dictionary;
 
+use ISO_32000_2::Table_248-Entries_in_the_ECMAScript_dictionary;
+also does ISO_32000_2::Table_248-Entries_in_the_ECMAScript_dictionary;
+
 =begin pod
 =head1 role FDF::JavaScript
 

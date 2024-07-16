@@ -3,6 +3,12 @@ unit role FDF::Catalog;
 use PDF::COS::Tie::Hash;
 also does PDF::COS::Tie::Hash;
 
+use ISO_32000::Table_242-Entries_in_the_FDF_catalog_dictionary;
+also does ISO_32000::Table_242-Entries_in_the_FDF_catalog_dictionary;
+
+use ISO_32000_2::Table_245-Entries_in_the_FDF_catalog_dictionary;
+also does ISO_32000_2::Table_245-Entries_in_the_FDF_catalog_dictionary;
+
 =begin pod
 =head1 role FDF::Catalog
 

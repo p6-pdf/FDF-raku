@@ -6,6 +6,9 @@ also does PDF::COS::Tie::Hash;
 use ISO_32000::Table_243-Entries_in_the_FDF_dictionary;
 also does ISO_32000::Table_243-Entries_in_the_FDF_dictionary;
 
+use ISO_32000_2::Table_246-Entries_in_the_FDF_dictionary;
+also does ISO_32000_2::Table_246-Entries_in_the_FDF_dictionary;
+
 =begin pod
 =head1 Role FDF::Dict
 
@@ -15,9 +18,6 @@ This is the main dictionary describing the contents of an FDF (Forms Data Format
 
 =head2 METHODS
 =end pod
-
-
-   # See [PDF 32000 Table 243 – Entries in the FDF dictionary]
 
 use PDF::COS::Tie;
 use PDF::Filespec :FileRef, :&to-file;
