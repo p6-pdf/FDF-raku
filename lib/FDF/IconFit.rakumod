@@ -1,4 +1,10 @@
-use v6;
+unit role FDF::IconFit;
+
+use PDF::COS::Tie::Hash;
+also does PDF::COS::Tie::Hash ;
+
+use ISO_32000::Table_247-Entries_in_an_icon_fit_dictionary;
+also does ISO_32000::Table_247-Entries_in_an_icon_fit_dictionary;
 
 =begin pod
 =head1 role FDF::IconFit
@@ -9,11 +15,6 @@ The Icon Fit dictionary specifies how to display the button’s icon within the 
 
 =head2 Methods
 =end pod
-
-use PDF::COS::Tie::Hash;
-
-role FDF::IconFit
-    does PDF::COS::Tie::Hash {
 
     # See [PDF 32000 - Table 247 – Entries in an icon fit dictionary]
 
@@ -42,4 +43,3 @@ role FDF::IconFit
 
     has Bool $.FB;                               #| (Optional; PDF 1.5) If true, indicates that the button appearance should be scaled to fit fully within the bounds of the annotation without taking into consideration the line width of the border. Default value: false.
 
-}

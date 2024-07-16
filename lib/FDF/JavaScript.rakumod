@@ -1,4 +1,10 @@
-use v6;
+unit role FDF::JavaScript;
+
+use PDF::COS::Tie::Hash;
+also does PDF::COS::Tie::Hash;
+
+use ISO_32000::Table_245-Entries_in_the_JavaScript_dictionary;
+also does ISO_32000::Table_245-Entries_in_the_JavaScript_dictionary;
 
 =begin pod
 =head1 role FDF::JavaScript
@@ -13,29 +19,24 @@ are executed immediately before and after the FDF file is imported.
 =head2 Methods
 =end pod
 
-use PDF::COS::Tie::Hash;
 
-role FDF::JavaScript
-    does PDF::COS::Tie::Hash {
+# See [PDF 32000 Table 245 - Entries in the JavaScript dictionary]
 
-    # See [PDF 32000 Table 245 - Entries in the JavaScript dictionary]
+use PDF::COS::Tie;
+use PDF::Class::Defs :TextOrStream;
 
-    use PDF::COS::Tie;
-    use PDF::Class::Defs :TextOrStream;
+#| (Optional) A text string or text stream containing a JavaScript script to be executed just before the FDF file is imported.
+has TextOrStream $.Before is entry;
 
-    #| (Optional) A text string or text stream containing a JavaScript script to be executed just before the FDF file is imported.
-    has TextOrStream $.Before is entry;
+#| (Optional) A text string or text stream containing a JavaScript script to be executed just after the FDF file is imported.
+has TextOrStream $.After is entry;
 
-    #| (Optional) A text string or text stream containing a JavaScript script to be executed just after the FDF file is imported.
-    has TextOrStream $.After is entry;
+#| (Optional; PDF 1.6) A text string or text stream containing a JavaScript script to be executed after the FDF file is imported and the usage rights in the PDF document have been determined.
+has TextOrStream $.AfterPermsReady is entry;
+# Note: Verification of usage rights requires the entire file to be present, in which case this script defers execution until that requirement is met.
 
-    #| (Optional; PDF 1.6) A text string or text stream containing a JavaScript script to be executed after the FDF file is imported and the usage rights in the PDF document have been determined.
-    has TextOrStream $.AfterPermsReady is entry;
-    # Note: Verification of usage rights requires the entire file to be present, in which case this script defers execution until that requirement is met.
+# to be completed
 
-    # to be completed
+#| An array defining additional JavaScript scripts that is added to those defined in the JavaScript entry of the document’s name dictionary. The array contains an even number of elements, organized in pairs. The first element of each pair is a name and the second is a text string or text stream defining the script corresponding to that name. Each of the defined scripts is added to those already defined in the name dictionary and is then executed before the script defined in the Before entry is executed.
+has @.Doc is entry;
 
-    #| An array defining additional JavaScript scripts that is added to those defined in the JavaScript entry of the document’s name dictionary. The array contains an even number of elements, organized in pairs. The first element of each pair is a name and the second is a text string or text stream defining the script corresponding to that name. Each of the defined scripts is added to those already defined in the name dictionary and is then executed before the script defined in the Before entry is executed.
-    has @.Doc is entry;
-
-}
